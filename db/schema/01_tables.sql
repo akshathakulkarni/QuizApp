@@ -23,6 +23,7 @@ CREATE TABLE quizzes (
 
 CREATE TABLE questions (
   id SERIAL PRIMARY KEY NOT NULL,
+  query VARCHAR(255) NOT NULL,
   correct_answer VARCHAR(255) NOT NULL,
   wrong_1 VARCHAR(255) NOT NULL,
   wrong_2 VARCHAR(255) NOT NULL,
