@@ -1,0 +1,6 @@
+This file contains the notes that we (Stéphane and Akshatha, the developers) have taken for this project.
+
+Oct. 21:
+I have written each quiz's link as a 6-character alphanumeric string, like in Tinyapp. That way we can take the generateRandomString function from Tinyapp and put it in the form for creating a new quiz, when the time comes to do so.
+Perhaps the next step after we've established our database is to make a homepage with some hardcoded dummy elements for quizzes. We'll want a nice header to go in every page as well, i imagine that can be an EJS file?
+- Stéphane
