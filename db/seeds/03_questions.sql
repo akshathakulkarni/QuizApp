@@ -24,5 +24,5 @@ INSERT INTO questions (quiz_id, query, correct_answer, wrong_1, wrong_2, wrong_3
 INSERT INTO questions (quiz_id, query, correct_answer, wrong_1, wrong_2, wrong_3) VALUES (8, 'Which of these basses was first released?', 'Precision Bass', 'Jazz Bass', 'Musicmaster', 'Bass VI');
 INSERT INTO questions (quiz_id, query, correct_answer, wrong_1, wrong_2, wrong_3) VALUES (8, 'Who was NOT associated with Fender?', 'Ted McCarty', 'Doc Kauffman', 'George Fullerton', 'Jimi Hendrix');
 INSERT INTO questions (quiz_id, query, correct_answer, wrong_1, wrong_2, wrong_3) VALUES (9, 'Which of these electric guitars was first released?', 'Les Paul', 'SG', 'ES-335', 'Flying V');
-INSERT INTO questions (quiz_id, query, correct_answer, wrong_1, wrong_2, wrong_3) VALUES (8, 'Which of these acoustic guitars was first released?', 'L-5', 'J-45', 'Hummingbird', 'J-200');
-INSERT INTO questions (quiz_id, query, correct_answer, wrong_1, wrong_2, wrong_3) VALUES (8, 'Who was NOT associated with Gibson?', 'George Fullerton', 'Ted McCarty', 'Lloyd Loar', 'Jimmy Page');
+INSERT INTO questions (quiz_id, query, correct_answer, wrong_1, wrong_2, wrong_3) VALUES (9, 'Which of these acoustic guitars was first released?', 'L-5', 'J-45', 'Hummingbird', 'J-200');
+INSERT INTO questions (quiz_id, query, correct_answer, wrong_1, wrong_2, wrong_3) VALUES (9, 'Who was NOT associated with Gibson?', 'George Fullerton', 'Ted McCarty', 'Lloyd Loar', 'Jimmy Page');
