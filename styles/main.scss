@@ -43,6 +43,11 @@ main {
   float: right;
 }
 
+.quiz-proper {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
 .quiz-proper h2, h4 {
   text-align: center;
 }
@@ -55,6 +60,10 @@ main {
 
 .quiz-proper button {
   margin-top: 20px;
+}
+
+.button-container {
+  text-align: center;
 }
 
 .attempt {
