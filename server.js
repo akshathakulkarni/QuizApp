@@ -41,6 +41,7 @@ const quizRoutes = require("./routes/quiz");
 const questionsRoutes = require("./routes/questions");
 const quizQuestionIdRoutes = require("./routes/quiz-question");
 const attemptsRoutes = require("./routes/attempts");
+const login = require("./routes/login");
 
 
 // Mount all resource routes
@@ -49,8 +50,9 @@ app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/api/quizzes", quizRoutes(db));
 app.use("/api/questions", questionsRoutes(db));
-app.use("/api/quiz_question_id", quizQuestionIdRoutes(db));
+app.use("/api/quizQuestionId", quizQuestionIdRoutes(db));
 app.use("/api/attempts", attemptsRoutes(db));
+app.use("/api/login", login(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -60,6 +62,26 @@ app.use("/api/attempts", attemptsRoutes(db));
 app.get("/", (req, res) => {
   res.render("index");
 });
+
+app.post('/login', (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  db.query(`SELECT name FROM users WHERE email = $1 AND password = $2`, [email, password])
+    .then((data) => {
+      const name = data.rows[0].name;
+      //console.log(data);
+      res.json({ name });
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .json({error: err.message});
+    });
+})
+
+// app.get("/login", (req, res) => {
+//   res.render("login");
+// })
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
