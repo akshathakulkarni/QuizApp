@@ -69,6 +69,10 @@ app.get('/dummyattempt', (req, res) => {
   res.render('dummyattempt');
 });
 
+app.get('/dummynew', (req, res) => {
+  res.render('dummynew');
+});
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
