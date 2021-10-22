@@ -61,8 +61,16 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.get('/secondpage', (req, res) => {
-  res.render('secondpage');
+app.get('/dummyquiz', (req, res) => {
+  res.render('dummyquiz');
+});
+
+app.get('/dummyattempt', (req, res) => {
+  res.render('dummyattempt');
+});
+
+app.get('/dummynew', (req, res) => {
+  res.render('dummynew');
 });
 
 app.listen(PORT, () => {
