@@ -63,26 +63,6 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.post('/login', (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
-  db.query(`SELECT name FROM users WHERE email = $1 AND password = $2`, [email, password])
-    .then((data) => {
-      const name = data.rows[0].name;
-      //console.log(data);
-      res.json({ name });
-    })
-    .catch((err) => {
-      res
-        .status(500)
-        .json({error: err.message});
-    });
-})
-
-// app.get("/login", (req, res) => {
-//   res.render("login");
-// })
-
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
