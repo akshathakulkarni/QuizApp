@@ -12,7 +12,7 @@ module.exports = (db) => {
     const password = req.body.password;
     db.query(`SELECT name FROM users WHERE email = $1 AND password = $2`, [email, password])
       .then((data) => {
-        const name = data.rows;
+        const name = data.rows[0].name;
         res.json({ name });
       })
       .catch((err) => {
