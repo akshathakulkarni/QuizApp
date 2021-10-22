@@ -61,6 +61,10 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.get('/secondpage', (req, res) => {
+  res.render('secondpage');
+});
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
