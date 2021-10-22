@@ -3,7 +3,7 @@ const router = express.Router();
 
 module.exports = (db) => {
   router.get('/', (req, res) => {
-    db.query(`SELECT * FROM quizzes-questions;`)
+    db.query(`SELECT * FROM quizzes_questions;`)
       .then(data => {
         const quiz_questionIds = data.rows;
         res.json({ quiz_questionIds });
