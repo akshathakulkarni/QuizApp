@@ -42,6 +42,7 @@ const questionsRoutes = require("./routes/questions");
 const quizQuestionIdRoutes = require("./routes/quiz-question");
 const attemptsRoutes = require("./routes/attempts");
 const login = require("./routes/login");
+const logout = require("./routes/logout");
 
 
 // Mount all resource routes
@@ -53,6 +54,7 @@ app.use("/api/questions", questionsRoutes(db));
 app.use("/api/quizQuestionId", quizQuestionIdRoutes(db));
 app.use("/api/attempts", attemptsRoutes(db));
 app.use("/api/login", login(db));
+app.use("/logout", logout(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
