@@ -1,0 +1,28 @@
+<header id=main-header>
+  <nav class="navbar navbar-expand-md navbar-dark bg-success">
+    <a class="navbar-brand" >QuizApp</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <% if(name) { %>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="">Create New Quiz</a>
+          <a class="nav-item nav-link" href="">My Quiz</a>
+        </div>
+      </div>
+      <h6>Logged In As:&nbsp</h6>  <!-- &nbsp(non-breaking space) for adding space after header -->
+      <h5><%= name %>&nbsp&nbsp</h5>
+      <form method="POST", action="/logout">
+        <button class="btn btn-primary" type="submit">Logout</button>
+      </form>
+
+    <% } else { %>
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="/login"><b>Login</b></a>
+        <!-- <a class="nav-item nav-link" href="/register"><b>Register</b></a> -->
+      </div>
+    <% } %>
+  </nav>
+</header>
