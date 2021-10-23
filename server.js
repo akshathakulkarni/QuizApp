@@ -60,7 +60,8 @@ app.use("/api/login", login(db));
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
-  res.render("index");
+  const name = '';
+  res.render("index", { name });
 });
 
 app.get('/dummyquiz', (req, res) => {
