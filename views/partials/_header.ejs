@@ -8,8 +8,8 @@
     <% if(name) { %>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-item nav-link" href="">Create New Quiz</a>
-          <a class="nav-item nav-link" href="">My Quiz</a>
+          <a class="nav-item nav-link" >Create New Quiz</a>
+          <a class="nav-item nav-link" >My Quiz</a>
         </div>
       </div>
       <h6>Logged In As:&nbsp</h6>  <!-- &nbsp(non-breaking space) for adding space after header -->
@@ -20,7 +20,7 @@
 
     <% } else { %>
       <div class="navbar-nav">
-        <a class="nav-item nav-link" href="/login"><b>Login</b></a>
+        <a class="nav-item nav-link" href="/api/login"><b>Login</b></a>
         <!-- <a class="nav-item nav-link" href="/register"><b>Register</b></a> -->
       </div>
     <% } %>
