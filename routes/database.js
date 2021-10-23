@@ -33,3 +33,20 @@ const makeNewQuestion = function(data) {
 }
 
 module.exports = { makeNewQuestion };
+
+const checkAnswer = function(ans) {
+  const query = ans.query;
+  const answer = ans.answer;
+  const queryString = `SELECT COUNT(*) FROM questions WHERE query = $1 AND correct_answer = $2`;
+  return pool.query(queryString, [query, answer])
+  .then(res => {
+    if (res.number === 1) { // or whatever this is
+      return true;
+    }
+    return false;
+  })
+  .catch(e => console.log(e));
+}
+
+module.exports = { checkAnswer };
+
