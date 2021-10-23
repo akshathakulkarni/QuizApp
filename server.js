@@ -41,6 +41,7 @@ const quizRoutes = require("./routes/quiz");
 const questionsRoutes = require("./routes/questions");
 const quizQuestionIdRoutes = require("./routes/quiz-question");
 const attemptsRoutes = require("./routes/attempts");
+const db = require("./routes/database");
 
 
 // Mount all resource routes
