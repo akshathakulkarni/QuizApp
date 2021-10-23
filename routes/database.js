@@ -50,3 +50,34 @@ const checkAnswer = function(ans) {
 
 module.exports = { checkAnswer };
 
+const recordAttempt = function(data) {
+  const userID = data.user_id;
+  const quizID = data.quiz_id;
+  const score = data.score;
+  const link = generateRandomString();
+  const queryString = `INSERT INTO attempts (user_id, quiz_id, score, link) VALUES ($1, $2, $3, $4) RETURNING *;`;
+  const queryParams = [userID, quizID, score, link];
+  return pool.query(queryString, queryParams).catch(e => console.log(e));
+}
+
+module.exports = { recordAttempt };
+
+/*
+Takes two strings, one declaring the table looked at (either quizzes or attempts) and the other declarign the proposed string for the hyperlink
+Checks if a hyperlink with that string already exists in the database
+Returns true if it does
+*/
+const checkDuplicate = function(type, string) {
+  const queryString = `SELECT link FROM $1 WHERE link = $2;`;
+  const queryParams = [type, string];
+  return pool.query(queryString, queryParams)
+  .then(res => {
+    if (res.rows) {
+      return true;
+    }
+    return false;
+  })
+  .catch(e => console.log(e));
+}
+
+module.exports = { checkDuplicate };

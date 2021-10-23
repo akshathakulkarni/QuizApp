@@ -65,4 +65,9 @@ const recordAttempt = function(data) {
 
 *****
 
+Trying to figure out the workflow here:
+
+Quiz attempt is submitted
+POST route for this particular quiz is handled
+
 - Stéphane
