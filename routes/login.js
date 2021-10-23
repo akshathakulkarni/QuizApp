@@ -10,10 +10,12 @@ module.exports = (db) => {
     console.log('inside post route')
     const email = req.body.email;
     const password = req.body.password;
-    db.query(`SELECT name FROM users WHERE email = $1 AND password = $2`, [email, password])
+    db.query(`SELECT name, id FROM users WHERE email = $1 AND password = $2`, [email, password])
       .then((data) => {
         const name = data.rows[0].name;
-        res.json({ name });
+
+        //res.json({ name })
+        res.render('index', { name });
       })
       .catch((err) => {
         res
