@@ -40,6 +40,7 @@ const generateRandomString = function(length, chars) {
 
 module.exports = (db) => {
   router.get('/', (req, res) => {
+    console.log('inside get new')
     res.render('dummynew');
   })
   router.post('/', (req, res) => {

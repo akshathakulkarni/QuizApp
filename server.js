@@ -83,9 +83,9 @@ app.get('/dummyattempt', (req, res) => {
   res.render('dummyattempt');
 });
 
-// app.get('/dummynew', (req, res) => {
-//   res.render('dummynew');
-// });
+app.get('/dummynew', (req, res) => {
+  res.render('dummynew');
+});
 
 
 // app.get("/login", (req, res) => {
