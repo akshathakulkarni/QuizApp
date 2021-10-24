@@ -83,7 +83,7 @@ app.get('/dummyattempt', (req, res) => {
   res.render('dummyattempt');
 });
 
-app.get('/dummynew', (req, res) => {
+app.get('/dummynew', (req, res) => { //Handle get route within newQuiz.js
   res.render('dummynew');
 });
 
