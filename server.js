@@ -5,6 +5,7 @@ require("dotenv").config();
 const PORT = process.env.PORT || 8080;
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
+const cookieSession = require('cookie-session');
 const app = express();
 const morgan = require("morgan");
 
@@ -18,6 +19,12 @@ db.connect();
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan("dev"));
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2'],
+  // Cookie Options
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}));
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
@@ -43,6 +50,7 @@ const quizQuestionIdRoutes = require("./routes/quiz-question");
 const attemptsRoutes = require("./routes/attempts");
 const login = require("./routes/login");
 const logout = require("./routes/logout");
+const newQuiz = require("./routes/newQuiz");
 
 
 // Mount all resource routes
@@ -55,6 +63,7 @@ app.use("/api/quizQuestionId", quizQuestionIdRoutes(db));
 app.use("/api/attempts", attemptsRoutes(db));
 app.use("/api/login", login(db));
 app.use("/logout", logout(db));
+app.use("/api/newQuiz", newQuiz(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -74,7 +83,7 @@ app.get('/dummyattempt', (req, res) => {
   res.render('dummyattempt');
 });
 
-app.get('/dummynew', (req, res) => {
+app.get('/dummynew', (req, res) => { //Handle get route within newQuiz.js
   res.render('dummynew');
 });
 
