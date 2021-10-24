@@ -14,7 +14,11 @@ module.exports = (db) => {
       .then((data) => {
         const name = data.rows[0].name;
         req.session.user_id = data.rows[0].id;
+<<<<<<< HEAD
         console.log('user id = ', req.session.user_id)
+=======
+        console.log('id = ', req.session.user_id);
+>>>>>>> e7a022e409e226d50b3694490252f838379f2250
         //res.json({ name })
         res.render('index', { name });
       })

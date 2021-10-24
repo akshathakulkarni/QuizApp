@@ -105,3 +105,57 @@ My feeble attempt at a to-do list:
 - Figure out how NOT to get unlisted quizzes on the main page (i'm guessing they will be objects by the time they get to the front end? if so shouldn't be too hard)
 
 - Stéphane
+
+Oct 22
+
+In 'routes' branch: I have added the login feature and the header which is an ejs file under views/partials only for home page, where we can see the 'Create new quiz', 'My quiz' 'Logged in as : user's name' and a 'logout' button.
+Once the user logs out, we can only see the Login which when clicked redirects to the login page. Need some clarification on rendering same(index.ejs) file with and without user data in order to check login functionality. Also clear the cookie session
+once the user logs out.
+
+Oct 23
+
+In 'addNewQuiz' branch: I have added a post route for 'Create new quiz'. Used the above 'makeNewQuiz' and 'makeNewQuestion' functions to test if the data is inserted to db. We need to activate
+the click handlers for the 'Add another question' and 'I would like this quiz to be unlisted' so that we can check the whole functionality of Create new quiz. Should the
+'Add another question' take the user to a new page for next question or render question answer blocks on the same page by appending to previous question? Can we accomplish this
+using ajax/jQuery (without refresh)? Will this link all questions entered by user and then allow us to insert them into db? Testing this has messed up db and quiz id no has jumped from 9 to 22 with no other ids in between since
+I deleted some manually to remove repetation. I have installed and used cookie-session to get the author_id. The final response for now is in json. Need to decide if we want to redirect to public quizzes(home page) or myQuiz page or allow the user to view the quiz that they created (new ejs ?).
+We also need to discuss how we should modularize route files.
+
+My quiz
+
+In 'myQuiz' branch: Handled a get route to collect all quizzes based on author_id. I have again used cookie-session to get the author_id. We need to have a new ejs file
+to display all quizzes based on id and redirect from home page.
+
+
+Few ideas :
+
+1. Evaluating the results : (Attempt to randamize the correct answer among 4)
+   Can we change the questions table in db to have answer 1, 2, 3, 4 instead of correct answer and 3 wrong answers? Then include a correct answer column in quizzes_questions table
+   from where we can select quiz id , question id and correct answer, get the selected answer from 4 options, have a function to compare selected answer with correct answer
+   and increment a counter if comparison holds true. Then we can get the counter value over total number of questions for results. This might also need changes on dummynew ejs to include a seperate
+   block input for entering correct answer keep the 4 blocks for 4 answers. Then manually we will have to change our order of answers in seeds. But this way, the user can remember
+   that for q1 the correct answer is option__ if he tries to attempt quiz multiple times (Like our compass quiz). If we don't want this to happen then we need to randamize
+   all 4 answers each time the user attempts the quiz. Not sure how complex and time consuming this might get.
+
+2. Sharing links for quizzes and answers : Add a share icon below each quiz and results. When clicked, this can take us to a new page where it shows the link
+   that will display the whole link and say "Use this link to share" and the user copies and share it. Or we can implement `copied to clipboard` like gitHub and the
+   user understands he can directly send it. Again not sure how complex this might be. Keeping MVP in mind, its always better if we keep it as simple as possible.
+
+
+To do :
+
+1. CSS style : We need to have a simple yet attractive background for the home page. Background can be the same for all other pages.
+   Or we can have a similar but different backgrounds based on what we want to display.
+
+2. Update the index, dummyquiz and dummyattempt ejs files to use actual data.
+
+3. Implement 'Take the quiz' and evaluate.
+
+4. Add a new 'View Results' button that redirects to attempts.ejs (recent attempt only).
+
+5. Implement quiz and results 'share' links.
+
+*****
+
+-Akshatha
+
