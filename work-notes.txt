@@ -159,3 +159,52 @@ To do :
 
 -Akshatha
 
+
+Oct 24
+
+Great work in the newQuiz route! The happy path for this works perfectly, but i would like to also have
+a way to handle edge cases, like if when creating a quiz the user leaves a field blank.
+Just after line 59 in the newQuiz file.
+
+When i did my tweeter, i would have hidden error messages in my HTML, and then if the tweet
+was empty or too long i would make a css function for them to show up. Perhaps we can do the same here?
+
+I think the next step will be to figure out the page for my quizzes (plural, i would say).
+
+I like the idea for the other method of determining the correct answer, though i'm tempted to say let'same
+act as though we can do all A's or something for now?
+
+I'm seeing in the data for a quiz, where it says "title" then console log the req - there is
+title, query, correct and wrong1-3 all in the same level of the object. Perhaps there is a way
+to structure it like so:
+
+title: {
+  title: *name of quiz*
+  q1: {
+    query: ...
+    correct: ...
+    wrong1: ...
+    wrong2: ...
+    wrong3: ...
+  }
+  q2: {
+    query: ...
+    correct: ...
+    wrong1: ...
+    wrong2: ...
+    wrong3: ...
+  }
+}
+
+and so on.
+I'm not sure if there's a way to get into the req object to really do that.
+
+But then if we do that, the function could be something like:
+title of quiz = title;
+for (const q in obj) {
+  if (typeof obj[q] === object) {
+    const question = obj[q];
+    *handle the individual params here*
+  }
+}
+
