@@ -5,6 +5,7 @@ require("dotenv").config();
 const PORT = process.env.PORT || 8080;
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
+const cookieSession = require('cookie-session')
 const app = express();
 const morgan = require("morgan");
 
@@ -18,6 +19,10 @@ db.connect();
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan("dev"));
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2']
+}))
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
@@ -41,6 +46,9 @@ const quizRoutes = require("./routes/quiz");
 const questionsRoutes = require("./routes/questions");
 const quizQuestionIdRoutes = require("./routes/quiz-question");
 const attemptsRoutes = require("./routes/attempts");
+const login = require("./routes/login");
+const logout = require("./routes/logout");
+const myQuiz = require("./routes/myQuiz");
 
 
 // Mount all resource routes
@@ -49,8 +57,11 @@ app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/api/quizzes", quizRoutes(db));
 app.use("/api/questions", questionsRoutes(db));
-app.use("/api/quiz_question_id", quizQuestionIdRoutes(db));
+app.use("/api/quizQuestionId", quizQuestionIdRoutes(db));
 app.use("/api/attempts", attemptsRoutes(db));
+app.use("/api/login", login(db));
+app.use("/logout", logout(db));
+app.use("/my_quizzes", myQuiz(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -58,7 +69,8 @@ app.use("/api/attempts", attemptsRoutes(db));
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
-  res.render("index");
+  const name = '';
+  res.render("index", { name });
 });
 
 app.get('/dummyquiz', (req, res) => {
@@ -73,6 +85,10 @@ app.get('/dummynew', (req, res) => {
   res.render('dummynew');
 });
 
+
+// app.get("/login", (req, res) => {
+//   res.render("login");
+// })
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
