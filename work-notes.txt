@@ -65,6 +65,45 @@ const recordAttempt = function(data) {
 
 *****
 
+Trying to figure out the workflow here:
+
+Quiz attempt is submitted
+POST route for this particular attempt is handled (how? I guess use a post route in server or smth idk)
+In POST route, call the SQL query
+SQL query inserts quiz attempt into database
+.then res.redirect to this particular quiz attempt with the unique link
+
+Question is - how do we get the file with the GET and POST routes to recognize the pool?
+I guess the fulcrum for that would be server.js?
+
+New quiz is made
+POST route for this particular quiz is handled
+Route calls two different functions: makeNewQuiz and makeNewQuestion, the latter in a for loop
+They call all the necessary SQL queries
+then res.redirect to this quiz with unique link
+
+Little hiccup:
+if we're going to make a new quiz or attempt and the POST route is going to handle the quiz with its own unique link,
+then that link has to be made with generateRandomString BEFORE it gets to the POST route
+(do we have any documents that handle front end functions yet? this might be a good place to start)
+
+^ oh wait no we don't need that, because the POST request is just going to either quizzes or attempts, not the link;
+the link created on the back end will be redirected to from within the back end
+
+So much to do, where to start??
+
+For the element creator functions: we probably don't need escape like we did on Tweeter, since it's all going through the back end
+which already has escape stuff set up with the $ in the SQL queries
+
+My feeble attempt at a to-do list:
+- Find out where front end functions are handled, make element creator functions there
+- Somehow hook them up to the back end with GET/POST requests and SQL queries
+- Figure out how to make new-text forms without IDs, so there can be multiple question fields
+- Make an event listener for "add another question" that somehow appends new input elements with unique IDs
+- Figure out how to get the SQL data on the front end in the first place
+- Figure out how to arrange multiple choice answers randomly
+- Figure out how NOT to get unlisted quizzes on the main page (i'm guessing they will be objects by the time they get to the front end? if so shouldn't be too hard)
+
 - Stéphane
 
 Oct 22
