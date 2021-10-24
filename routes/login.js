@@ -13,7 +13,8 @@ module.exports = (db) => {
     db.query(`SELECT name, id FROM users WHERE email = $1 AND password = $2`, [email, password])
       .then((data) => {
         const name = data.rows[0].name;
-
+        req.session.user_id = data.rows[0].id;
+        console.log('user id = ', req.session.user_id)
         //res.json({ name })
         res.render('index', { name });
       })
