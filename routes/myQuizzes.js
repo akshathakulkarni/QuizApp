@@ -12,14 +12,6 @@ module.exports = (db) => {
         const myQuizzes = data.rows;
         console.log('myQuizzes:', myQuizzes);
         const userName = myQuizzes[0].name;
-        /*
-        const dataObj = {};
-        for (let q = 0; q < myQuizzes.length; q++) {
-          dataObj[q] = myQuizzes[q];
-        }
-        console.log('dataObj:', dataObj);
-        */
-        //res.json({ myQuiz });
         res.render("myquizzes", {'myQuizzes': myQuizzes, 'name': userName});
       })
       .catch((err) => {
