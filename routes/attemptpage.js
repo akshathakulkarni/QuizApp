@@ -24,12 +24,16 @@ module.exports = (db) => {
             .then(questionCountData => {
               console.log('question count', questionCountData.rows);
               const questionCount = questionCountData.rows[0].count;
-              res.render('attemptpage', {
-                'attemptObj': attemptObj,
-                'attemptName': attemptName,
-                'quizTitle': quizTitle,
-                'questionCount': questionCount,
-                'name': req.session.user_id
+              db.query('SELECT name FROM users WHERE id = $1', [req.session.user_id])
+              .then(userNameData => {
+                const userName = userNameData.rows[0].name;
+                res.render('attemptpage', {
+                  'attemptObj': attemptObj,
+                  'attemptName': attemptName,
+                  'quizTitle': quizTitle,
+                  'questionCount': questionCount,
+                  'name': userName
+                })
               })
             })
           })
