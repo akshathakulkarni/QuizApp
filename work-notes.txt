@@ -208,3 +208,12 @@ for (const q in obj) {
   }
 }
 
+*****
+
+I have now made a working "my quizzes" page and have a bit better idea of how everything works.
+The next thing will be to make a page for individual quizzes.
+However, i still need to figure out where to append the : link whatever it is with the route format we're using.
+Like we'll need a GET route for quizzes:link. Straightforward enough when all the routes were on a single file like Tinyapp,
+but for the format we're using where URL's are modularized, it's less evident.
+
+- Stéphane
