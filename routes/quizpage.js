@@ -11,9 +11,20 @@ module.exports = (db) => {
       .then(quizData => {
         console.log('Data rows:', quizData.rows);
         const quizId = quizData.rows[0].id;
+        const authorId = quizData.rows[0].author_id;
         db.query('SELECT * FROM questions WHERE quiz_id = $1', [quizId])
         .then(questionData => {
           console.log('Question data:', questionData.rows);
+          db.query('SELECT name FROM users WHERE id = $1', [authorId])
+          .then(authorData => {
+            console.log('Author data:', authorData.rows);
+            console.log('Just the name:', authorData.rows[0].name);
+            res.render('quizpage', {
+              'quizData': quizData.rows,
+              'questionData': questionData.rows,
+              'authorName': authorData.rows[0].name
+            })
+          })
         })
       })
       .catch((err) => {
