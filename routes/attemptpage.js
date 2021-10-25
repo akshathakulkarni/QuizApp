@@ -16,10 +16,11 @@ module.exports = (db) => {
         .then(nameData => {
           console.log('name data:', nameData.rows);
           const attemptName = nameData.rows[0].name;
-          db.query('SELECT title FROM quizzes WHERE id = $1', [attemptObj.quiz_id])
+          db.query('SELECT title, link FROM quizzes WHERE id = $1', [attemptObj.quiz_id])
           .then(quizData =>{
             console.log('Quiz data:', quizData.rows);
             const quizTitle = quizData.rows[0].title;
+            const quizLink = quizData.rows[0].link;
             db.query('SELECT count(*) FROM questions WHERE quiz_id = $1', [attemptObj.quiz_id])
             .then(questionCountData => {
               console.log('question count', questionCountData.rows);
@@ -32,6 +33,7 @@ module.exports = (db) => {
                   'attemptName': attemptName,
                   'quizTitle': quizTitle,
                   'questionCount': questionCount,
+                  'quizLink': quizLink,
                   'name': userName
                 })
               })

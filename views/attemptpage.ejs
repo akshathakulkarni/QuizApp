@@ -18,17 +18,10 @@
     </a>
   </header>
   <article class="attempt">
-    <h2>My attempt at "<%- quizTitle -%>"</h2>
-    <p>I attempted "<%- quizTitle -%>" and got <%- attemptObj.score -%> out of <%- questionCount -%> questions right!</p>
+    <h2><%- attemptName -%>'s attempt at "<%- quizTitle -%>"</h2>
+    <p><%- attemptName -%> attempted "<%- quizTitle -%>" and got <%- attemptObj.score -%> out of <%- questionCount -%> questions right!</p>
     <p>Can you do better?</p>
-    <a class="btn btn-primary" href="api/quizzes" role="button">Take the quiz!</a>
-  </article>
-
-  <article class="attempt">
-    <h2>My attempt at Obscure Baroque String Facts</h2>
-    <p>I attempted the "Obscure Baroque String Facts" quiz and got 2 out of 3 questions right!</p>
-    <p>Can you do better?</p>
-    <a class="btn btn-primary" href="dummyquiz" role="button">Take the quiz!</a>
+    <a class="btn btn-primary" href="/api/quizzes/<%- quizLink -%>" role="button">Take the quiz!</a>
   </article>
 </body>
 </html>
