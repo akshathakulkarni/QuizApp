@@ -15,7 +15,7 @@ module.exports = (db) => {
         const name = data.rows[0].name;
         req.session.user_id = data.rows[0].id;
         console.log('id = ', req.session.user_id);
-        db.query(`SELECT * FROM quizzes WHERE unlisted = false`)
+        db.query(`SELECT quizzes.*, users.name FROM quizzes JOIN users ON users.id = quizzes.author_id WHERE unlisted = false`)
         .then(data => {
           console.log(data.rows);
           res.render('index', { 'publicQuizzes': data.rows, 'name': name });
