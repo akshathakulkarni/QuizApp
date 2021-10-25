@@ -17,6 +17,12 @@
     <h1>QuizApp</h1>
     </a>
   </header>
+  <article class="attempt">
+    <h2>My attempt at "<%- quizTitle -%>"</h2>
+    <p>I attempted "<%- quizTitle -%>" and got <%- attemptObj.score -%> out of <%- questionCount -%> questions right!</p>
+    <p>Can you do better?</p>
+    <a class="btn btn-primary" href="api/quizzes" role="button">Take the quiz!</a>
+  </article>
 
   <article class="attempt">
     <h2>My attempt at Obscure Baroque String Facts</h2>
