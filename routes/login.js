@@ -15,8 +15,11 @@ module.exports = (db) => {
         const name = data.rows[0].name;
         req.session.user_id = data.rows[0].id;
         console.log('id = ', req.session.user_id);
-        //res.json({ name })
-        res.render('index', { name });
+        db.query(`SELECT * FROM quizzes WHERE unlisted = false`)
+        .then(data => {
+          console.log(data.rows);
+          res.render('index', { 'publicQuizzes': data.rows, 'name': name });
+        })
       })
       .catch((err) => {
         res
