@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+
+
 const makeNewQuiz = function(data, user) {
   const title = data.title;
   const unlisted = data.unlisted;
@@ -48,7 +50,10 @@ module.exports = (db) => {
     const title = req.body.title;
     const author_id = req.session.user_id;
     console.log('author_id = ', author_id)
-    const unlisted = false;
+    console.log('req = ', req.body)
+    console.log('req params = ', req.params)
+
+    console.log(title, author_id, unlisted)
     const link = generateRandomString(6, '8qy3zi');
     console.log('link = ', link)
     const query = req.body.query;
