@@ -22,14 +22,18 @@
       </a>
   </header>
   <main>
-    <article>
+    <% if (name) {
+      for (const quiz of publicQuizzes) { %>
+      <article>
       <div class="quiz-preview">
-        <h6>3 attempts, average 2/3</h6>
-        <h2>Obscure Baroque String Facts</h2>
-        <h5>by Leon</h5>
-        <a class="btn btn-primary" href="dummyquiz" role="button">Take the quiz</a>
+        <h6>Dummy text for number of attempts</h6>
+        <h2><%- quiz.title -%></h2>
+        <h5>by <%- quiz.name -%></h5>
+        <a class="btn btn-primary" href="quizzes/<%- quiz.link -%>" role="button">Take the quiz</a>
       </div>
     </article>
+    <%  }
+    } %>
   </main>
 </body>
 
