@@ -15,7 +15,7 @@ module.exports = (db) => {
         db.query('SELECT name FROM users WHERE id = $1', [attemptObj.user_id])
         .then(nameData => {
           console.log('name data:', nameData.rows);
-          const name = nameData.rows[0].name;
+          const attemptName = nameData.rows[0].name;
           db.query('SELECT title FROM quizzes WHERE id = $1', [attemptObj.quiz_id])
           .then(quizData =>{
             console.log('Quiz data:', quizData.rows);
@@ -26,9 +26,10 @@ module.exports = (db) => {
               const questionCount = questionCountData.rows[0].count;
               res.render('attemptpage', {
                 'attemptObj': attemptObj,
-                'name': name,
+                'attemptName': attemptName,
                 'quizTitle': quizTitle,
-                'questionCount': questionCount
+                'questionCount': questionCount,
+                'name': req.session.user_id
               })
             })
           })
