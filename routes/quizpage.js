@@ -6,6 +6,7 @@ module.exports = (db) => {
     //console.log('Req session:', req.session);
     //console.log('Req params:', req.params)
     const link = req.params.link;
+    console.log('Cookie ID:', req.session.user_id);
     console.log('We got here, req params', req.params);
     db.query(`SELECT * FROM quizzes WHERE link = $1`, [link])
       .then(quizData => {
@@ -19,10 +20,14 @@ module.exports = (db) => {
           .then(authorData => {
             console.log('Author data:', authorData.rows);
             console.log('Just the name:', authorData.rows[0].name);
-            res.render('quizpage', {
-              'quizData': quizData.rows,
-              'questionData': questionData.rows,
-              'authorName': authorData.rows[0].name
+            db.query('SELECT name FROM users WHERE id = $1', [req.session.user_id])
+            .then(loginData => {
+              res.render('quizpage', {
+                'quizData': quizData.rows,
+                'questionData': questionData.rows,
+                'authorName': authorData.rows[0].name,
+                'name': loginData.rows[0].name
+              })
             })
           })
         })

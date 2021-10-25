@@ -11,11 +11,53 @@
   <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
 <body>
+  <%- include('partials/_header.ejs') %>
+  <% console.log(quizData, questionData, authorName);
+      const quizObj = quizData[0]; %>
   <header>
     <a href="/">
     <h1>QuizApp</h1>
     </a>
   </header>
+
+
+
+<article class="quiz-proper">
+  <h2><%- quizObj.title -%></h2>
+  <h4>by <%- authorName -%></h4>
+  <form>
+    <% for (let i = 0; i < questionData.length; i++) { %>
+    <div class="question">
+      <p class="query"><%- questionData[i].query -%></p>
+      <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a1">
+      <label class="form-check-label" for="q<%- i + 1 -%>a1">
+        <%- questionData[i].correct_answer -%>
+      </label>
+      <br>
+      <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a2">
+      <label class="form-check-label" for="q<%- i + 1 -%>a2">
+        <%- questionData[i].wrong_1 -%>
+      </label>
+      <br>
+      <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a3">
+      <label class="form-check-label" for="q<%- i + 1 -%>a3">
+        <%- questionData[i].wrong_2 -%>
+      </label>
+      <br>
+      <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a4">
+      <label class="form-check-label" for="q<%- i + 1 -%>a4">
+        <%- questionData[i].wrong_3 -%>
+      </label>
+    </div>
+    <% } %>
+
+    <div class="button-container">
+      <button type="submit" class="btn btn-primary">Submit attempt</button>
+    </div>
+  </form>
+</article>
+
+
 <article class="quiz-proper">
   <h2>Obscure Baroque String Facts</h2>
   <h4>by Leon</h4>
@@ -94,5 +136,7 @@
     </div>
   </form>
 </article>
+
+
 </body>
 </html>
