@@ -7,9 +7,10 @@ module.exports = (db) => {
     console.log('author id = ', author_id);
     db.query(`SELECT * FROM quizzes WHERE author_id = $1`, [author_id])
       .then(data => {
-        const myQuiz = data.rows;
-        console.log(myQuiz);
-        res.json({ myQuiz });
+        const myQuizzes = data.rows;
+        console.log('myQuizzes:', myQuizzes);
+        //res.json({ myQuiz });
+        res.render("myquizzes", myQuizzes);
       })
       .catch((err) => {
         res
