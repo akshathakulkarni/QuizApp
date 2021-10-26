@@ -8,7 +8,8 @@ module.exports = (db) => {
     const userId = req.session.user_id;
     console.log('myAttempts route has been reached');
     console.log('author id = ', userId);
-    db.query(`SELECT attempts.id as attemptid, attempts.user_id, attempts.quiz_id, attempts.score, attempts.link as attemptlink, x.name as attemptName, quizzes.title, y.name as authorName, quizzes.link as quizlink
+    db.query(`SELECT attempts.id as attemptid, attempts.user_id, attempts.quiz_id, attempts.score, attempts.link as attemptlink, x.name as attemptName, quizzes.title, y.name as authorName, quizzes.link as quizlink,
+    (SELECT count(*) FROM quizzes_questions WHERE quiz_id = quizzes.id)
     FROM attempts
     JOIN users x ON x.id = user_id
     JOIN quizzes ON quiz_id = quizzes.id
