@@ -16,12 +16,9 @@
 
 <body>
   <%- include('partials/_header.ejs') %>
-  <header>
-    <a href="/">
-      <h1>QuizApp</h1>
-      </a>
-  </header>
   <main>
+    <h2 id="page-title">My quizzes</h2>
+    <br>
     <% for (const quiz of myQuizzes) { -%>
       <div class="quiz-preview">
         <h6>Dummy text for amount of attempts</h6>
