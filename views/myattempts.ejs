@@ -24,6 +24,16 @@
   </header>
   <h2 id="page-title">My attempts</h2>
   <main>
+    <% for (const attempt of attemptData) { %>
+      <% console.log('Attempt:', attempt) %>
+    <article class="attempt-preview">
+      <h2><%- attempt.title -%></h2>
+      <p>by <%- attempt.authorname -%></p>
+      <h3>Score</h3>
+      <a class="btn btn-primary" href="/dummyquiz" role="button">Take the quiz again</a>
+  </article>
+  <% } %>
+
     <article class="attempt-preview">
         <h2>Quiz title</h2>
         <p>by quiz author</p>
