@@ -30,8 +30,9 @@
     <article class="new-quiz">
       <h2>Create a new quiz</h2>
       <p>Every question must have four multiple choice answers, of which only one is correct.</p>
-        <form method="POST",  action='/api/newQuiz'>
+        <form id='quiz-form', method="POST",  action='/api/newQuiz'>
           <section id='question'>
+            <span id="error"></span>
             <div class="input-group title">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="title-prompt">Title of quiz</span>
@@ -88,7 +89,7 @@
                I would like this quiz to be unlisted
             </label>
           </div>
-          <button type="submit" class="btn btn-primary">Submit quiz</button>
+          <button type="submit" class="btn btn-primary" id='submit-quiz'>Submit quiz</button>
         </form>
   </article>
 
