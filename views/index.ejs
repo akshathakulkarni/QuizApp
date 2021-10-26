@@ -17,7 +17,8 @@
 <body>
   <%- include('partials/_header.ejs') %>
   <main>
-    <%for (const quiz of publicQuizzes) { %>
+    <%if (name) {
+      for (const quiz of publicQuizzes) { %>
       <article>
       <div class="quiz-preview">
         <h6>Dummy text for number of attempts</h6>
@@ -26,7 +27,7 @@
         <a class="btn btn-primary" href="quizzes/<%- quiz.link -%>" role="button">Take the quiz</a>
       </div>
     </article>
-    <%  } %>
+    <%  } } %>
   </main>
 </body>
 

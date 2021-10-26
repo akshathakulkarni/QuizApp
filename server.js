@@ -55,6 +55,7 @@ const myQuizzes = require("./routes/myQuizzes");
 const quizPage = require("./routes/quizpage");
 const attemptPage = require("./routes/attemptpage");
 const myAttempts = require("./routes/myAttempts");
+const quizList = require("./routes/quizList");
 
 
 // Mount all resource routes
@@ -72,6 +73,7 @@ app.use("/api/myQuizzes", myQuizzes(db));
 app.use("/api/quizzes", quizPage(db));
 app.use("/api/attempts", attemptPage(db));
 app.use("/api/myAttempts", myAttempts(db));
+app.use("/", quizList(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
