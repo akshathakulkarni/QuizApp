@@ -14,6 +14,7 @@ module.exports = (db) => {
         res.render('index', { 'publicQuizzes': quizData.rows, 'name': userName });
       })
     })
+    .catch(e => console.log(e));
   })
   return router;
 }
