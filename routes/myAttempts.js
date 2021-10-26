@@ -21,6 +21,7 @@ module.exports = (db) => {
         .then(userData => {
           const name = userData.rows[0].name;
           console.log('username in attempts:', name);
+          res.render('myattempts', { 'attemptData': attemptData, 'name': name })
         })
       })
       .catch((err) => {
