@@ -15,12 +15,10 @@ module.exports = (db) => {
     JOIN users y ON y.id = quizzes.author_id
     WHERE x.id = $1;`, [userId])
       .then(data => {
-        console.log('Data rows in myAttempts:', data.rows);
         const attemptData = data.rows;
         db.query('SELECT name FROM users WHERE id = $1', [userId])
         .then(userData => {
           const name = userData.rows[0].name;
-          console.log('username in attempts:', name);
           res.render('myattempts', { 'attemptData': attemptData, 'name': name })
         })
       })
