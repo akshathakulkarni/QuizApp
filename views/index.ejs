@@ -17,18 +17,16 @@
 <body>
   <%- include('partials/_header.ejs') %>
   <main>
-    <% if (name) {
-      for (const quiz of publicQuizzes) { %>
+    <%for (const quiz of publicQuizzes) { %>
       <article>
       <div class="quiz-preview">
         <h6>Dummy text for number of attempts</h6>
         <h2><%- quiz.title -%></h2>
         <h5>by <%- quiz.name -%></h5>
-        <a class="btn btn-primary" href="quizzes/<%- quiz.link -%>" role="button">Take the quiz</a>
+        <a class="btn btn-primary" href="/api/quizzes/<%- quiz.link -%>" role="button">Take the quiz</a>
       </div>
     </article>
-    <%  }
-    } %>
+    <%  } %>
   </main>
 </body>
 

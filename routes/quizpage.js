@@ -20,15 +20,24 @@ module.exports = (db) => {
           .then(authorData => {
             console.log('Author data:', authorData.rows);
             console.log('Just the name:', authorData.rows[0].name);
-            db.query('SELECT name FROM users WHERE id = $1', [req.session.user_id])
-            .then(loginData => {
+            if (req.session.user_id) {
+              db.query('SELECT name FROM users WHERE id = $1', [req.session.user_id])
+              .then(loginData => {
+                res.render('quizpage', {
+                  'quizData': quizData.rows,
+                  'questionData': questionData.rows,
+                  'authorName': authorData.rows[0].name,
+                  'name': loginData.rows[0].name
+                })
+              })
+            } else {
               res.render('quizpage', {
                 'quizData': quizData.rows,
                 'questionData': questionData.rows,
                 'authorName': authorData.rows[0].name,
-                'name': loginData.rows[0].name
+                'name': null
               })
-            })
+            }
           })
         })
       })
