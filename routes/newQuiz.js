@@ -40,6 +40,8 @@ const generateRandomString = function(length, chars) {
   return result;
 };
 
+
+
 module.exports = (db) => {
   router.get('/', (req, res) => {
     console.log('inside get new')
@@ -51,33 +53,37 @@ module.exports = (db) => {
     const author_id = req.session.user_id;
     console.log('author_id = ', author_id)
     console.log('req = ', req.body)
-    const queryArray = req.body.query;
-    const correctAnswerArray = req.body.correct;
-    const wrongAnswer1Array = req.body.wrong1;
-    const wrongAnswer2Array = req.body.wrong2;
-    const wrongAnswer3Array = req.body.wrong3;
-    console.log(queryArray, correctAnswerArray, wrongAnswer1Array, wrongAnswer2Array, wrongAnswer3Array)
 
-
-    for (let query of queryArray) {
-      for (let queryNumber = 0; queryNumber < queryArray.length; queryNumber++) {
-        let question
-
-      }
-
+    const dataArray = (obj) => {
+      let result = []
+        for(let i = 0; i < obj["query"].length; i++){
+            let tempObj = {}
+            tempObj["query"] = obj["query"][i]
+            tempObj["correct"] = obj["correct"][i]
+            tempObj["wrong1"] = obj["wrong1"][i]
+            tempObj["wrong2"] = obj["wrong2"][i]
+            tempObj["wrong3"] = obj["wrong3"][i]
+            result.push(tempObj)
+        }
+        return result
     }
 
-    // console.log(title, author_id, unlisted)
-    // const link = generateRandomString(6, '8qy3zi');
-    // console.log('link = ', link)
-    // const query = req.body.query;
-    // const correct = req.body.correct;
-    // const wrong1 = req.body.wrong1;
-    // const wrong2 = req.body.wrong2;
-    // const wrong3 = req.body.wrong3;
-    // console.log('title : ', req.body)
-    // const query1 =`INSERT INTO quizzes (title, author_id, unlisted, link) VALUES ($1, $2, $3, $4) RETURNING *;`;
-    // const values1 = [title, author_id, unlisted, link];
+    let obj = req.body
+    let dataResult = dataArray(obj)
+    console.log(`dataResult: ${JSON.stringify(dataResult)}`)
+   // console.log(title, author_id, unlisted)
+    const link = generateRandomString(6, '8qy3zi');
+    console.log('link = ', link)
+    for (let eachObj of dataResult) {
+      for (let eachItem in eachObj) {
+        console.log(eachItem)
+        //console.log('1 = ', eachObj[eachItem][query])
+      }
+    }
+
+    //console.log('title : ', req.body)
+    //const query1 =`INSERT INTO quizzes (title, author_id, unlisted, link) VALUES ($1, $2, $3, $4) RETURNING *;`;
+    //const values1 = [title, author_id, unlisted, link];
 
     // db.query(query1, values1)
     //   .then(data => {
