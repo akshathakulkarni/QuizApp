@@ -12,11 +12,6 @@
 </head>
 <body>
   <%- include('partials/_header.ejs') %>
-  <header>
-    <a href="/">
-    <h1>QuizApp</h1>
-    </a>
-  </header>
   <article class="attempt">
     <h2><%- attemptName -%>'s attempt at "<%- quizTitle -%>"</h2>
     <p><%- attemptName -%> attempted "<%- quizTitle -%>" and got <%- attemptObj.score -%> out of <%- questionCount -%> questions right!</p>
