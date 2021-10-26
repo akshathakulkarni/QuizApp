@@ -6,13 +6,22 @@ module.exports = (db) => {
     //console.log('Req session:', req.session);
     //console.log('Req params:', req.params)
     const userId = req.session.user_id;
+    console.log('myAttempts route has been reached');
     console.log('author id = ', userId);
-    db.query(`SELECT quizzes.*, users.name FROM quizzes JOIN users ON users.id = quizzes.author_id WHERE quizzes.author_id = $1`, [userId])
+    db.query(`SELECT attempts.id as attemptid, attempts.user_id, attempts.quiz_id, attempts.score, attempts.link as attemptlink, x.name as attemptName, quizzes.title, y.name as authorName, quizzes.link as quizlink
+    FROM attempts
+    JOIN users x ON x.id = user_id
+    JOIN quizzes ON quiz_id = quizzes.id
+    JOIN users y ON y.id = quizzes.author_id
+    WHERE x.id = $1;`, [userId])
       .then(data => {
-        const myQuizzes = data.rows;
-        console.log('myQuizzes:', myQuizzes);
-        const userName = myQuizzes[0].name;
-        res.render("myquizzes", {'myQuizzes': myQuizzes, 'name': userName});
+        console.log('Data rows in myAttempts:', data.rows);
+        const attemptData = data.rows;
+        db.query('SELECT name FROM users WHERE id = $1', [userId])
+        .then(userData => {
+          const name = userData.rows[0].name;
+          console.log('username in attempts:', name);
+        })
       })
       .catch((err) => {
         res
