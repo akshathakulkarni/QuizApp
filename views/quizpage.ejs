@@ -13,33 +13,33 @@
 </head>
 <body>
   <%- include('partials/_header.ejs') %>
-  <% console.log(quizData, questionData, authorName);%>
+  <% console.log(quizData);%>
 
   <article class="quiz-proper">
-    <h2><%- quizObj.title -%></h2>
-    <h4>by <%- authorName -%></h4>
+    <h2><%- quizData[0].title -%></h2>
+    <h4>by <%- quizData[0].author -%></h4>
     <form action="/api/attempts" method="POST">
-      <% for (let i = 0; i < questionData.length; i++) { %>
+      <% for (let i = 0; i < quizData.length; i++) { %>
       <div class="question">
-        <p class="query"><%- questionData[i].query -%></p>
+        <p class="query"><%- quizData[i].query -%></p>
         <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a1" value="correct">
         <label class="form-check-label" for="q<%- i + 1 -%>a1">
-          <%- questionData[i].correct_answer -%>
+          <%- quizData[i].correct_answer -%>
         </label>
         <br>
         <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a2" value="wrong1">
         <label class="form-check-label" for="q<%- i + 1 -%>a2">
-          <%- questionData[i].wrong_1 -%>
+          <%- quizData[i].wrong_1 -%>
         </label>
         <br>
         <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a3" value="wrong2">
         <label class="form-check-label" for="q<%- i + 1 -%>a3">
-          <%- questionData[i].wrong_2 -%>
+          <%- quizData[i].wrong_2 -%>
         </label>
         <br>
         <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a4" value="wrong3">
         <label class="form-check-label" for="q<%- i + 1 -%>a4">
-          <%- questionData[i].wrong_3 -%>
+          <%- quizData[i].wrong_3 -%>
         </label>
       </div>
       <% } %>
