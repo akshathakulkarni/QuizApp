@@ -60,7 +60,6 @@ const quizzes = require("./routes/quizzes");
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
-//app.use("/api/quizzes", quizRoutes(db));
 app.use("/api/questions", questionsRoutes(db));
 app.use("/api/quizQuestionId", quizQuestionIdRoutes(db));
 app.use("/api/attempts", attempts(db));
