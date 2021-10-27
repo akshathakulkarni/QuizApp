@@ -53,7 +53,7 @@ const logout = require("./routes/logout");
 const newQuiz = require("./routes/newQuiz");
 const myQuizzes = require("./routes/myQuizzes");
 const quizPage = require("./routes/quizpage");
-const attempts = require("./routes/attempts");
+const attemptPage = require("./routes/attemptpage");
 const myAttempts = require("./routes/myAttempts");
 const quizList = require("./routes/quizList");
 
@@ -71,7 +71,7 @@ app.use("/logout", logout(db));
 app.use("/api/newQuiz", newQuiz(db));
 app.use("/api/myQuizzes", myQuizzes(db));
 app.use("/api/quizzes", quizPage(db));
-app.use("/api/attempts", attempts(db));
+app.use("/api/attempts", attemptPage(db));
 app.use("/api/myAttempts", myAttempts(db));
 app.use("/", quizList(db));
 // Note: mount other resources here, using the same pattern above
