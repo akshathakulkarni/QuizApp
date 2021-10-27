@@ -7,7 +7,15 @@ module.exports = (db) => {
     //console.log('Req params:', req.params)
     author_id = req.session.user_id;
     console.log('author id = ', author_id);
-    db.query(`SELECT quizzes.*, users.name FROM quizzes JOIN users ON users.id = quizzes.author_id WHERE quizzes.author_id = $1`, [author_id])
+    db.query(`
+    SELECT quizzes.*, users.name,
+    (SELECT count(*) FROM attempts WHERE quiz_id = quizzes.id) as attempts,
+    ROUND((SELECT avg(score) FROM attempts WHERE quiz_id = quizzes.id), 1) as avg,
+    (SELECT count(*) FROM quizzes_questions WHERE quiz_id = quizzes.id) as count
+    FROM quizzes
+    JOIN users ON users.id = quizzes.author_id
+    WHERE quizzes.author_id = $1;
+    `, [author_id])
       .then(data => {
         const myQuizzes = data.rows;
         console.log('myQuizzes:', myQuizzes);
