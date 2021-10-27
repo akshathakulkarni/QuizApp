@@ -21,7 +21,7 @@
       <% console.log(quiz) %>
       <article>
       <div class="quiz-preview">
-        <h6>Dummy text for number of attempts</h6>
+        <h6><%- quiz.attempts -%> attempt<% if (quiz.attempts === '0') { %>s<% } else if (quiz.attempts === '1') { %>, <%- quiz.avg -%>/<%- quiz.count -%><% } else { %>s, average <%- quiz.avg -%>/<%- quiz.count -%><% } %></h6>
         <h2><%- quiz.title -%></h2>
         <h5>by <%- quiz.name -%></h5>
         <a class="btn btn-primary" href="/api/quizzes/<%- quiz.link -%>" role="button">Take the quiz</a>
