@@ -17,11 +17,7 @@ module.exports = (db) => {
         req.session.name = data.rows[0].name;
         console.log('name = ', req.session.name)
         console.log('id = ', req.session.user_id);
-        db.query(`SELECT quizzes.*, users.name FROM quizzes JOIN users ON users.id = quizzes.author_id WHERE unlisted = false`)
-        .then(data => {
-          console.log(data.rows);
-          res.render('index', { 'publicQuizzes': data.rows, 'name': name });
-        })
+        res.redirect('/');
       })
       .catch((err) => {
         res
