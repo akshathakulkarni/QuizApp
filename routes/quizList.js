@@ -7,7 +7,7 @@ module.exports = (db) => {
     .then(quizData => {
       const publicQuizzes = quizData.rows;
       if (req.session.user_id) {
-        db.query('SELECT name FROM users WHERE id = $1', [userId])
+        db.query('SELECT name FROM users WHERE id = $1', [req.session.user_id])
         .then(userData => {
           console.log('name in home get:', userData.rows[0].name);
           const userName = userData.rows[0].name;
