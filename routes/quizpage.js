@@ -52,7 +52,19 @@ module.exports = (db) => {
       FROM quizzes_questions
       JOIN quizzes ON quiz_id = quizzes.id
       JOIN questions ON question_id = questions.id
-      WHERE quizzes.link = 1;`, [link])
+      WHERE quizzes.link = $1;`, [link])
+      .then(data => {
+        console.log(data.rows);
+        if (req.session.user_id) {
+          db.query('SELECT name FROM users WHERE id = $1', [req.session.user_id])
+          .then(nameData => {
+            res.render('quizpage', { 'quizData': data.rows, 'name': nameData.rows[0].name });
+          })
+        } else {
+          res.render('quizpage', { 'quizData': data.rows, 'name': null });
+        }
+      })
+      .catch(e=> console.log(e));
   })
   return router;
 }
