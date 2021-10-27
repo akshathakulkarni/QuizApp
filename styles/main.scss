@@ -49,9 +49,10 @@ main {
   margin-right: 15%;
 }
 
-.quiz-preview {
+.quiz-preview, .attempt-preview {
   border: 1px solid black;
   padding: 20px;
+  margin-bottom: 40px;
   display: flexbox;
   flex-direction: row;
 }
@@ -93,4 +94,8 @@ main {
 
 .new-quiz button {
   margin-top: 40px;
+}
+
+#page-title {
+  text-align: center;
 }

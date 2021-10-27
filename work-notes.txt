@@ -65,4 +65,155 @@ const recordAttempt = function(data) {
 
 *****
 
+Trying to figure out the workflow here:
+
+Quiz attempt is submitted
+POST route for this particular attempt is handled (how? I guess use a post route in server or smth idk)
+In POST route, call the SQL query
+SQL query inserts quiz attempt into database
+.then res.redirect to this particular quiz attempt with the unique link
+
+Question is - how do we get the file with the GET and POST routes to recognize the pool?
+I guess the fulcrum for that would be server.js?
+
+New quiz is made
+POST route for this particular quiz is handled
+Route calls two different functions: makeNewQuiz and makeNewQuestion, the latter in a for loop
+They call all the necessary SQL queries
+then res.redirect to this quiz with unique link
+
+Little hiccup:
+if we're going to make a new quiz or attempt and the POST route is going to handle the quiz with its own unique link,
+then that link has to be made with generateRandomString BEFORE it gets to the POST route
+(do we have any documents that handle front end functions yet? this might be a good place to start)
+
+^ oh wait no we don't need that, because the POST request is just going to either quizzes or attempts, not the link;
+the link created on the back end will be redirected to from within the back end
+
+So much to do, where to start??
+
+For the element creator functions: we probably don't need escape like we did on Tweeter, since it's all going through the back end
+which already has escape stuff set up with the $ in the SQL queries
+
+My feeble attempt at a to-do list:
+- Find out where front end functions are handled, make element creator functions there
+- Somehow hook them up to the back end with GET/POST requests and SQL queries
+- Figure out how to make new-text forms without IDs, so there can be multiple question fields
+- Make an event listener for "add another question" that somehow appends new input elements with unique IDs
+- Figure out how to get the SQL data on the front end in the first place
+- Figure out how to arrange multiple choice answers randomly
+- Figure out how NOT to get unlisted quizzes on the main page (i'm guessing they will be objects by the time they get to the front end? if so shouldn't be too hard)
+
+- Stéphane
+
+Oct 22
+
+In 'routes' branch: I have added the login feature and the header which is an ejs file under views/partials only for home page, where we can see the 'Create new quiz', 'My quiz' 'Logged in as : user's name' and a 'logout' button.
+Once the user logs out, we can only see the Login which when clicked redirects to the login page. Need some clarification on rendering same(index.ejs) file with and without user data in order to check login functionality. Also clear the cookie session
+once the user logs out.
+
+Oct 23
+
+In 'addNewQuiz' branch: I have added a post route for 'Create new quiz'. Used the above 'makeNewQuiz' and 'makeNewQuestion' functions to test if the data is inserted to db. We need to activate
+the click handlers for the 'Add another question' and 'I would like this quiz to be unlisted' so that we can check the whole functionality of Create new quiz. Should the
+'Add another question' take the user to a new page for next question or render question answer blocks on the same page by appending to previous question? Can we accomplish this
+using ajax/jQuery (without refresh)? Will this link all questions entered by user and then allow us to insert them into db? Testing this has messed up db and quiz id no has jumped from 9 to 22 with no other ids in between since
+I deleted some manually to remove repetation. I have installed and used cookie-session to get the author_id. The final response for now is in json. Need to decide if we want to redirect to public quizzes(home page) or myQuiz page or allow the user to view the quiz that they created (new ejs ?).
+We also need to discuss how we should modularize route files.
+
+My quiz
+
+In 'myQuiz' branch: Handled a get route to collect all quizzes based on author_id. I have again used cookie-session to get the author_id. We need to have a new ejs file
+to display all quizzes based on id and redirect from home page.
+
+
+Few ideas :
+
+1. Evaluating the results : (Attempt to randamize the correct answer among 4)
+   Can we change the questions table in db to have answer 1, 2, 3, 4 instead of correct answer and 3 wrong answers? Then include a correct answer column in quizzes_questions table
+   from where we can select quiz id , question id and correct answer, get the selected answer from 4 options, have a function to compare selected answer with correct answer
+   and increment a counter if comparison holds true. Then we can get the counter value over total number of questions for results. This might also need changes on dummynew ejs to include a seperate
+   block input for entering correct answer keep the 4 blocks for 4 answers. Then manually we will have to change our order of answers in seeds. But this way, the user can remember
+   that for q1 the correct answer is option__ if he tries to attempt quiz multiple times (Like our compass quiz). If we don't want this to happen then we need to randamize
+   all 4 answers each time the user attempts the quiz. Not sure how complex and time consuming this might get.
+
+2. Sharing links for quizzes and answers : Add a share icon below each quiz and results. When clicked, this can take us to a new page where it shows the link
+   that will display the whole link and say "Use this link to share" and the user copies and share it. Or we can implement `copied to clipboard` like gitHub and the
+   user understands he can directly send it. Again not sure how complex this might be. Keeping MVP in mind, its always better if we keep it as simple as possible.
+
+
+To do :
+
+1. CSS style : We need to have a simple yet attractive background for the home page. Background can be the same for all other pages.
+   Or we can have a similar but different backgrounds based on what we want to display.
+
+2. Update the index, dummyquiz and dummyattempt ejs files to use actual data.
+
+3. Implement 'Take the quiz' and evaluate.
+
+4. Add a new 'View Results' button that redirects to attempts.ejs (recent attempt only).
+
+5. Implement quiz and results 'share' links.
+
+*****
+
+-Akshatha
+
+
+Oct 24
+
+Great work in the newQuiz route! The happy path for this works perfectly, but i would like to also have
+a way to handle edge cases, like if when creating a quiz the user leaves a field blank.
+Just after line 59 in the newQuiz file.
+
+When i did my tweeter, i would have hidden error messages in my HTML, and then if the tweet
+was empty or too long i would make a css function for them to show up. Perhaps we can do the same here?
+
+I think the next step will be to figure out the page for my quizzes (plural, i would say).
+
+I like the idea for the other method of determining the correct answer, though i'm tempted to say let'same
+act as though we can do all A's or something for now?
+
+I'm seeing in the data for a quiz, where it says "title" then console log the req - there is
+title, query, correct and wrong1-3 all in the same level of the object. Perhaps there is a way
+to structure it like so:
+
+title: {
+  title: *name of quiz*
+  q1: {
+    query: ...
+    correct: ...
+    wrong1: ...
+    wrong2: ...
+    wrong3: ...
+  }
+  q2: {
+    query: ...
+    correct: ...
+    wrong1: ...
+    wrong2: ...
+    wrong3: ...
+  }
+}
+
+and so on.
+I'm not sure if there's a way to get into the req object to really do that.
+
+But then if we do that, the function could be something like:
+title of quiz = title;
+for (const q in obj) {
+  if (typeof obj[q] === object) {
+    const question = obj[q];
+    *handle the individual params here*
+  }
+}
+
+*****
+
+I have now made a working "my quizzes" page and have a bit better idea of how everything works.
+The next thing will be to make a page for individual quizzes.
+However, i still need to figure out where to append the : link whatever it is with the route format we're using.
+Like we'll need a GET route for quizzes:link. Straightforward enough when all the routes were on a single file like Tinyapp,
+but for the format we're using where URL's are modularized, it's less evident.
+
 - Stéphane

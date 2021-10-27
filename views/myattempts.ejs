@@ -16,17 +16,22 @@
 
 <body>
   <%- include('partials/_header.ejs') %>
+  <% console.log(attemptData) %>
+  <h2 id="page-title">My attempts</h2>
+  <br>
   <main>
-    <%for (const quiz of publicQuizzes) { %>
-      <article>
-      <div class="quiz-preview">
-        <h6>Dummy text for number of attempts</h6>
-        <h2><%- quiz.title -%></h2>
-        <h5>by <%- quiz.name -%></h5>
-        <a class="btn btn-primary" href="/api/quizzes/<%- quiz.link -%>" role="button">Take the quiz</a>
-      </div>
-    </article>
-    <%  } %>
+    <% for (const attempt of attemptData) { %>
+      <% console.log('Attempt:', attempt) %>
+    <article class="attempt-preview">
+      <h2><%- attempt.title -%></h2>
+      <p>by <%- attempt.authorname -%></p>
+      <h3>Score: <%- attempt.score -%> out of <%- attempt.count -%></h3>
+      <a class="btn btn-success" href="/api/attempts/<%- attempt.attemptlink -%>" role="button">See and share this attempt</a>
+      <br>
+      <br>
+      <a class="btn btn-primary" href="/api/quizzes/<%- attempt.quizlink -%>" role="button">Take the quiz again</a>
+  </article>
+  <% } %>
   </main>
 </body>
 
