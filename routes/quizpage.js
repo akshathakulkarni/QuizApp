@@ -8,6 +8,7 @@ module.exports = (db) => {
     const link = req.params.link;
     console.log('Cookie ID:', req.session.user_id);
     console.log('We got here, req params', req.params);
+    /*
     db.query(`SELECT * FROM quizzes WHERE link = $1`, [link])
       .then(quizData => {
         console.log('Data rows:', quizData.rows);
@@ -46,6 +47,12 @@ module.exports = (db) => {
           .status(500)
           .json({ err: err.message });
       })
+      */
+      db.query(`SELECT quizzes.*, questions.*, (SELECT name FROM users WHERE id = quizzes.author_id) as author
+      FROM quizzes_questions
+      JOIN quizzes ON quiz_id = quizzes.id
+      JOIN questions ON question_id = questions.id
+      WHERE quizzes.link = 1;`, [link])
   })
   return router;
 }
