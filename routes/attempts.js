@@ -71,8 +71,8 @@ module.exports = (db) => {
       })
   })
   router.post('/', (req, res) => {
-    console.log(req.params);
-    console.log(req.body);
+    console.log('attempts post params', req.params);
+    console.log('body', req.body);
   })
   return router;
 }
