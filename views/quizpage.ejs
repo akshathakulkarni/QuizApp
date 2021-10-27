@@ -18,26 +18,26 @@
   <article class="quiz-proper">
     <h2><%- quizObj.title -%></h2>
     <h4>by <%- authorName -%></h4>
-    <form>
+    <form action="/api/attempts" method="POST">
       <% for (let i = 0; i < questionData.length; i++) { %>
       <div class="question">
         <p class="query"><%- questionData[i].query -%></p>
-        <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a1">
+        <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a1" value="correct">
         <label class="form-check-label" for="q<%- i + 1 -%>a1">
           <%- questionData[i].correct_answer -%>
         </label>
         <br>
-        <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a2">
+        <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a2" value="wrong1">
         <label class="form-check-label" for="q<%- i + 1 -%>a2">
           <%- questionData[i].wrong_1 -%>
         </label>
         <br>
-        <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a3">
+        <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a3" value="wrong2">
         <label class="form-check-label" for="q<%- i + 1 -%>a3">
           <%- questionData[i].wrong_2 -%>
         </label>
         <br>
-        <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a4">
+        <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a4" value="wrong3">
         <label class="form-check-label" for="q<%- i + 1 -%>a4">
           <%- questionData[i].wrong_3 -%>
         </label>
