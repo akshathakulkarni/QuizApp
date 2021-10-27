@@ -77,25 +77,6 @@ $(document).ready(function() {
     if((errorCheck(event))) {
       event.preventDefault();
     }
-  //   console.log('Innnnnn')
-  //   event.preventDefault();
-  //   $error = $('#error');
-  // $inputText = $('#question');
-
-  // //For a valid input no error should be displayed.
-  // $error.text("");
-  // $error.removeClass('error');
-
-  // //check if input content is empty
-  // if($inputText.val() === '' || $inputText.val() === null || ($.trim($inputText.val()) === '' ))
-  // {
-  //   console.log('error check')
-  //   $error.addClass('error');
-  //   $error.text("!!!Empty content! Please enter all questions and answers.");
-  //   $inputText.slideDown();
-  // }
-  //   console.log("Inside submit handler")
-  //   //console.log('Data = ', serialisedData)
    });
 
 });
