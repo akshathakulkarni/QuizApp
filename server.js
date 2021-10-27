@@ -50,7 +50,6 @@ const attempts = require("./routes/attempts");
 const login = require("./routes/login");
 const logout = require("./routes/logout");
 const newQuiz = require("./routes/newQuiz");
-const quizPage = require("./routes/quizpage");
 const quizList = require("./routes/quizList");
 const quizzes = require("./routes/quizzes");
 
