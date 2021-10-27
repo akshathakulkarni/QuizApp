@@ -18,7 +18,7 @@
   <article class="quiz-proper">
     <h2><%- quizObj.title -%></h2>
     <h4>by <%- authorName -%></h4>
-    <form>
+    <form action="/api/attempts" method="POST">
       <% for (let i = 0; i < questionData.length; i++) { %>
       <div class="question">
         <p class="query"><%- questionData[i].query -%></p>
