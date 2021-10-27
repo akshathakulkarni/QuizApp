@@ -34,26 +34,45 @@ module.exports = (db) => {
   router.post('/', (req, res) => {
     console.log("inside newQuizPost")
     console.log('req = ', req.body)
-    let obj = req.body
-    let dataResult = dataArray(obj)
-    console.log(`dataResult: ${JSON.stringify(dataResult)}`)
-    console.log('length = ', dataResult.length);
-
+    const username = req.session.name;
+    console.log('username = ', username)
+    let obj = req.body;
+    let dataResult = [];
+    let dataObj = {};
+    let question = '';
+    let correct = '';
+    let wrong1 = '';
+    let wrong2 = '';
+    let wrong3 = '';
     const title = req.body.title;
     const author_id = req.session.user_id;
     let unlisted = false;
     if (req.body.unlisted === true) {
       unlisted = true;
     }
-    let question = '';
-    let correct = '';
-    let wrong1 = '';
-    let wrong2 = '';
-    let wrong3 = '';
     console.log('author_id = ', author_id)
     console.log(title, author_id, unlisted)
     const link = generateRandomString(6, '8qy3zi');
     console.log('link = ', link)
+    const templateVars = {
+      name : username,
+      link : link
+    };
+    console.log('t = ', templateVars)
+    if (typeof(obj['query']) === 'string') {
+        dataObj = {
+        query: obj['query'],
+        correct: obj['correct'],
+        wrong1: obj['wrong1'],
+        wrong2: obj['wrong2'],
+        wrong3: obj['wrong3']
+      };
+      dataResult = [ dataObj ];
+    } else {
+      dataResult = dataArray(obj)
+      console.log(`dataResult: ${JSON.stringify(dataResult)}`)
+      console.log('length = ', dataResult.length);
+    }
     const query1 =`INSERT INTO quizzes (title, author_id, unlisted, link) VALUES ($1, $2, $3, $4) RETURNING *;`;
     const values1 = [title, author_id, unlisted, link];
     db.query(query1, values1)
@@ -65,7 +84,6 @@ module.exports = (db) => {
         console.log('result = ', newQuiz);
         for (let eachObj of dataResult) {
           for (let eachItem in eachObj) {
-            //console.log(eachItem)
             if (eachItem === 'query') {
               console.log('question = ', eachObj[eachItem]);
               question = eachObj[eachItem];
@@ -110,10 +128,8 @@ module.exports = (db) => {
           .status(500)
           .json({ err: err.message });
       })
-      res.render('postNewQuiz', {link})
-      //res.render('myquizzes');
-      //res.redirect(`/api/quizzes/${link}`);
-      //res.json(':-)')
+      res.render('postNewQuiz', templateVars);
+
   })
   return router;
 }
