@@ -72,7 +72,10 @@ module.exports = (db) => {
 
     const title = req.body.title;
     const author_id = req.session.user_id;
-    const unlisted = req.body.unlisted;
+    let unlisted = false;
+    if (req.body.unlisted === true) {
+      unlisted = true;
+    }
     let question = '';
     let correct = '';
     let wrong1 = '';
@@ -138,7 +141,8 @@ module.exports = (db) => {
           .status(500)
           .json({ err: err.message });
       })
-      res.redirect(`/api/quiz/${link}`);
+      res.redirect(`/api/quizzes/${link}`);
+      //res.json(':-)')
   })
   return router;
 }
