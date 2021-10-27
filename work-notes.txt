@@ -217,3 +217,29 @@ Like we'll need a GET route for quizzes:link. Straightforward enough when all th
 but for the format we're using where URL's are modularized, it's less evident.
 
 - Stéphane
+
+******
+
+Oct. 27
+
+Here's my idea for how to randomize questions:
+
+When a quiz is fetched in the back end, randomize the answers BEFORE rendering.
+That way users cannot cheat by looking at the source code and seeing "correct/wrong".
+
+In attr value tag, it gives the exact same text as the answer (you, Akshatha, have already
+done this, kudos to you)
+That way, when the object gets posted, it will say what exact answer the person gave
+rather than correct/wrong
+
+Make a query in the attempts POST route which will go through the database and
+reintroduce the whole data of the quiz and questions. So front end will have zero mention
+one way or another of correct or wrong.
+
+On the back end, after that data is re-fetched in the POST route, make a function which will
+cross-reference the data in the db with the answers in the req body. Have a let Variable
+with a count which goes up by 1 with each correct answer. Then depending on if the user is
+logged in or out, either make a query to introduce a new attempt into the database, or
+render a temporary page with the score as a template variable without touching the database.
+
+- Stéphane
