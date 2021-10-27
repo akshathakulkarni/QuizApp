@@ -65,7 +65,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 //app.use("/api/quizzes", quizRoutes(db));
 app.use("/api/questions", questionsRoutes(db));
 app.use("/api/quizQuestionId", quizQuestionIdRoutes(db));
-//app.use("/api/attempts", attemptsRoutes(db));
+app.use("/api/attempts", attemptsRoutes(db));
 app.use("/api/login", login(db));
 app.use("/logout", logout(db));
 app.use("/api/newQuiz", newQuiz(db));

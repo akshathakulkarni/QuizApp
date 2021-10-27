@@ -14,5 +14,9 @@ module.exports = (db) => {
           .json({ err: err.message });
       })
   })
+  router.post('/', (req, res) => {
+    console.log(req.body);
+
+  })
   return router;
 }
