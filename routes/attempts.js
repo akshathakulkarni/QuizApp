@@ -87,7 +87,28 @@ module.exports = (db) => {
   })
   router.post('/', (req, res) => {
     console.log(req.body);
-
+    console.log(req.params);
+    const userId = req.session.user_id;
+    const quizLink = req.headers.referer.split('/')[5];
+    console.log(userId, quizLink);
+    db.query(`SELECT quizzes.*, users.name,
+    (SELECT count(*) FROM attempts WHERE quiz_id = quizzes.id) as attempts,
+    ROUND((SELECT avg(score) FROM attempts WHERE quiz_id = quizzes.id), 1) as avg,
+    (SELECT count(*) FROM quizzes_questions WHERE quiz_id = quizzes.id) as count
+    FROM quizzes
+    JOIN users ON users.id = quizzes.author_id
+    WHERE quizzes.link = $1;`, [quizLink])
+    .then(quizData => {
+      console.log(quizData.rows);
+      const quizObj = quizData.rows[0];
+      const quizId = quizObj.id;
+      console.log('quiz id', quizId);
+      db.query('SELECT * FROM questions WHERE quiz_id = $1', [quizId])
+      .then(questionData => {
+        console.log('question data', questionData.rows);
+      })
+    })
+    .catch(e => console.log(e))
   })
   return router;
 }
