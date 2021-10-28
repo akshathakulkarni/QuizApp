@@ -62,7 +62,8 @@ module.exports = (db) => {
                     'quizTitle': quizTitle,
                     'questionCount': questionCount,
                     'quizLink': quizLink,
-                    'name': userName
+                    'name': userName,
+                    'attemptLink' : link
                   })
                 })
               } else {

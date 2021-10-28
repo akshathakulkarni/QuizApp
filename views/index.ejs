@@ -25,6 +25,7 @@
         <h2><%- quiz.title -%></h2>
         <h5>by <%- quiz.name -%></h5>
         <a class="btn btn-primary" href="/api/quizzes/<%- quiz.link -%>" role="button">Take the quiz</a>
+        <a class="btn btn-success" href="/api/share/quiz/<%-  quiz.link -%>" role="button">Share quiz</a>
       </div>
     </article>
     <%  } %>
