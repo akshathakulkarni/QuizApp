@@ -35,7 +35,6 @@ module.exports = (db) => {
     const link = req.params.link;
     console.log('Cookie ID:', req.session.user_id);
     console.log('We got here, req params', req.params);
-    /*
     db.query(`SELECT * FROM attempts WHERE link = $1`, [link])
       .then(data => {
         console.log('Got here in attempts', data.rows);
@@ -85,7 +84,20 @@ module.exports = (db) => {
           .status(500)
           .json({ err: err.message });
       })
-      */
+     /*
+    db.query(`SELECT attempts.id as attemptid, attempts.user_id, attempts.quiz_id,
+    attempts.score, attempts.link as attemptlink, x.name as attemptName, quizzes.title,
+    y.name as authorName, quizzes.link as quizlink,
+    (SELECT count(*) FROM quizzes_questions WHERE quiz_id = quizzes.id)
+    FROM attempts
+    JOIN users x ON x.id = user_id
+    JOIN quizzes ON quiz_id = quizzes.id
+    JOIN users y ON y.id = quizzes.author_id
+    WHERE attempts.link = $1;`, [req.params.link])
+    .then(attemptData => {
+      console.log(attemptData.rows);
+    })
+    */
   })
   const checkScore = function(arr, body) {
     let score = 0;
@@ -125,12 +137,14 @@ module.exports = (db) => {
         const score = checkScore(questionData.rows, req.body);
         console.log('score', score);
         if (userId) {
+          const newLink = generateRandomString();
           db.query(`INSERT INTO attempts (user_id, quiz_id, score, link)
           VALUES ($1, $2, $3, $4) RETURNING *`,
-          [userId, quizId, score, generateRandomString()])
+          [userId, quizId, score, newLink])
           .then(attemptData => {
             console.log('attempt data', attemptData.rows);
             const attemptObj = attemptData.rows[0];
+            res.redirect(`/api/attempts/${newLink}`);
           })
         } else {
           res.render('tempattempt', {
