@@ -22,22 +22,22 @@
       <% for (let i = 0; i < quizData.length; i++) { %>
       <div class="question">
         <p class="query"><%- quizData[i].query -%></p>
-        <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a1" value=<%- quizData[i].correct_answer -%>>
+        <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a1" value="<%- quizData[i].correct_answer -%>">
         <label class="form-check-label" for="q<%- i + 1 -%>a1">
           <%- quizData[i].correct_answer -%>
         </label>
         <br>
-        <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a2" value=<%- quizData[i].wrong_1 -%>>
+        <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a2" value="<%- quizData[i].wrong_1 -%>">
         <label class="form-check-label" for="q<%- i + 1 -%>a2">
           <%- quizData[i].wrong_1 -%>
         </label>
         <br>
-        <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a3" value=<%- quizData[i].wrong_2 -%>>
+        <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a3" value="<%- quizData[i].wrong_2 -%>">
         <label class="form-check-label" for="q<%- i + 1 -%>a3">
           <%- quizData[i].wrong_2 -%>
         </label>
         <br>
-        <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a4" value=<%- quizData[i].wrong_3 -%>>
+        <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a4" value="<%- quizData[i].wrong_3 -%>">
         <label class="form-check-label" for="q<%- i + 1 -%>a4">
           <%- quizData[i].wrong_3 -%>
         </label>
