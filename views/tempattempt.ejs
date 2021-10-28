@@ -14,8 +14,11 @@
   <%- include('partials/_header.ejs') %>
   <% console.log(quizData, questionData, score, name); %>
   <article class="attempt">
-    <h2>sfgjsdflkjnsdfsd</h2>
-    <p>Can you do better?</p>
+    <h3>Thank you for taking <%- quizData.name -%>'s quiz, "<%- quizData.title -%>"!</h3>
+    <p>You scored:</p>
+    <h1><%- score -%> / <%- quizData.count -%></h1>
+    <p>Unfortunately, since you are not logged in, you cannot save or share your attempt.</p>
+    <p>Feel free to <a href="/api/quizzes/<%- quizData.link -%>">take the quiz again</a> or <a href="/api/login">login</a> to save your attempts.</p>
   </article>
 </body>
 </html>
