@@ -20,9 +20,10 @@ module.exports = (db) => {
         res.redirect('/');
       })
       .catch((err) => {
-        res
-          .status(500)
-          .json({error: err.message});
+        console.log('error catch');
+        res.status(500)
+          //.json({error: err.message})
+          .render('login', { invalid: true });
       });
   })
   return router;
