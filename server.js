@@ -44,35 +44,27 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
-const quizRoutes = require("./routes/quiz");
 const questionsRoutes = require("./routes/questions");
 const quizQuestionIdRoutes = require("./routes/quiz-question");
-const attemptsRoutes = require("./routes/attempts");
+const attempts = require("./routes/attempts");
 const login = require("./routes/login");
 const logout = require("./routes/logout");
 const newQuiz = require("./routes/newQuiz");
-const myQuizzes = require("./routes/myQuizzes");
-const quizPage = require("./routes/quizpage");
-const attemptPage = require("./routes/attemptpage");
-const myAttempts = require("./routes/myAttempts");
 const quizList = require("./routes/quizList");
+const quizzes = require("./routes/quizzes");
 
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
-//app.use("/api/quizzes", quizRoutes(db));
 app.use("/api/questions", questionsRoutes(db));
 app.use("/api/quizQuestionId", quizQuestionIdRoutes(db));
-app.use("/api/attempts", attemptsRoutes(db));
+app.use("/api/attempts", attempts(db));
 app.use("/api/login", login(db));
 app.use("/logout", logout(db));
 app.use("/api/newQuiz", newQuiz(db));
-app.use("/api/myQuizzes", myQuizzes(db));
-app.use("/api/quizzes", quizPage(db));
-app.use("/api/attempts", attemptPage(db));
-app.use("/api/myAttempts", myAttempts(db));
+app.use("/api/quizzes", quizzes(db));
 app.use("/", quizList(db));
 // Note: mount other resources here, using the same pattern above
 

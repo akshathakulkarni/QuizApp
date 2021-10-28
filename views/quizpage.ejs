@@ -16,8 +16,8 @@
   <% console.log(quizData);%>
 
   <article class="quiz-proper">
-    <h2><%- quizData[0].title -%></h2>
-    <h4>by <%- quizData[0].author -%></h4>
+    <h2><%- quizObj.title -%></h2>
+    <h4>by <%- quizObj.author -%></h4>
     <form action="/api/attempts" method="POST">
       <% for (let i = 0; i < quizData.length; i++) { %>
       <div class="question">
