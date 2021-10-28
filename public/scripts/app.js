@@ -42,23 +42,27 @@ return $addQuestion;
 }
 
 const errorCheck = function(event) {
-  //event.preventDefault();
   $error = $('#error');
   $inputText = $('.form-control');
+  console.log('inputText = ', $inputText.length);
+  let errorFlag = false;
 
   //For a valid input no error should be displayed.
   $error.text("");
-  $error.removeClass('error');
 
   //check if input content is empty
-  if($inputText.val() === '' || $inputText.val() === null || ($.trim($inputText.val()) === '' ))
-  {
-    $error.addClass('error');
-    $error.text("!!!Empty input! Please enter all questions and answers.");
-    $inputText.slideDown();
-    return true;
+  for (let $input in $inputText) {
+   console.log('input text = ', $inputText[$input].value);
+    if($inputText[$input].value === '' || $inputText[$input].value === null)
+    {
+      $error.css("background-color", "#FFDB58");
+      $error.text("!!!Empty input! Please enter all questions and answers.");
+      $error.slideDown();
+      errorFlag = true;
+    }
   }
-  return false;
+  console.log('errorFlag = ', errorFlag);
+  return errorFlag;
 }
 
 $(document).ready(function() {
@@ -74,9 +78,8 @@ $(document).ready(function() {
   });
 
   $('#quiz-form').submit(function(event) {
-    if((errorCheck(event))) {
+    if(errorCheck(event)) {
       event.preventDefault();
     }
    });
-
 });
