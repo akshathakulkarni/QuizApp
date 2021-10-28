@@ -47,9 +47,10 @@ module.exports = (db) => {
     })
     .catch((err) => {
       console.log('error catch');
-      res.status(500)
+      res.status(500);
+      console.log(err);
         //.json({error: err.message})
-        .render('login', { invalid: true });
+        //.render('login', { invalid: true });
     });
   })
   return router;
