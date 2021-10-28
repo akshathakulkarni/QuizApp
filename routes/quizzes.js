@@ -64,6 +64,12 @@ module.exports = (db) => {
     WHERE quizzes.link = $1;`, [link])
     .then(data => {
       console.log(data.rows);
+      const ansArr = [];
+      for (const q of data.rows) {
+        ansArr.push([q.correct_answer, q.wrong_1, q.wrong_2, q.wrong_3]);
+      }
+      ansArr.map(arr => arr.sort(() => Math.random() - 0.5));
+      console.log(ansArr);
       if (req.session.user_id) {
         db.query('SELECT name FROM users WHERE id = $1', [req.session.user_id])
         .then(nameData => {
