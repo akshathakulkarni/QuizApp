@@ -17,6 +17,8 @@
     <p><%- attemptName -%> attempted "<%- quizTitle -%>" and got <%- attemptObj.score -%> out of <%- questionCount -%> questions right!</p>
     <p>Can you do better?</p>
     <a class="btn btn-primary" href="/api/quizzes/<%- quizLink -%>" role="button">Take the quiz!</a>
+    <a class="btn btn-success" href="/api/share/attempt/<%-  attemptLink -%>" role="button">Share this attempt</a>
+
   </article>
 </body>
 </html>
