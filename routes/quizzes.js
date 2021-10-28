@@ -80,6 +80,17 @@ module.exports = (db) => {
         'author': refQuestion.author
       }
       const outgoingArr = [];
+      for (let i = 0; i < data.rows.length; i++) {
+        outgoingArr.push({
+          'id': data.rows[i].id,
+          'query': data.rows[i].query,
+          'ans1': ansArr[i][0],
+          'ans2': ansArr[i][1],
+          'ans3': ansArr[i][2],
+          'ans4': ansArr[i][3]
+        })
+      }
+      console.log(outgoingArr);
       if (req.session.user_id) {
         db.query('SELECT name FROM users WHERE id = $1', [req.session.user_id])
         .then(nameData => {
