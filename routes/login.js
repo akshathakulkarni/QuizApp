@@ -1,4 +1,5 @@
 const express = require("express");
+const bcrypt = require("bcrypt");
 const router = express.Router();
 
 module.exports = (db) => {
@@ -10,7 +11,8 @@ module.exports = (db) => {
     console.log('inside post route')
     const email = req.body.email;
     const password = req.body.password;
-    db.query(`SELECT name, id FROM users WHERE email = $1 AND password = $2`, [email, password])
+    const hash = bcrypt.hashSync(password);
+    db.query(`SELECT name, id FROM users WHERE email = $1 AND password = $2`, [email, hash])
       .then((data) => {
         const name = data.rows[0].name;
         req.session.user_id = data.rows[0].id;
