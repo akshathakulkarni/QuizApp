@@ -242,4 +242,13 @@ with a count which goes up by 1 with each correct answer. Then depending on if t
 logged in or out, either make a query to introduce a new attempt into the database, or
 render a temporary page with the score as a template variable without touching the database.
 
+
+*****
+
+All of the above is now done! Here's what i know is left to do:
+
+- Talk to a mentor about escaping double quotes in HTML for answer values
+- Implement bcrypt for user passwords
+- Implement share functionality
+
 - Stéphane

@@ -64,13 +64,50 @@ module.exports = (db) => {
     WHERE quizzes.link = $1;`, [link])
     .then(data => {
       console.log(data.rows);
+      data.rows.sort((a, b) => a.id - b.id); // is this line necessary?
+      const ansArr = [];
+      for (const q of data.rows) {
+        ansArr.push([q.correct_answer, q.wrong_1, q.wrong_2, q.wrong_3]);
+      }
+      ansArr.map(arr => arr.sort(() => Math.random() - 0.5));
+      console.log(ansArr);
+      const refQuestion = data.rows[0];
+      const quizObj = {
+        'id': refQuestion.quiz_id,
+        'title': refQuestion.title,
+        'unlisted': refQuestion.unlisted,
+        'link': link,
+        'author': refQuestion.author
+      }
+      const outgoingArr = [];
+      for (let i = 0; i < data.rows.length; i++) {
+        outgoingArr.push({
+          'id': data.rows[i].id,
+          'query': data.rows[i].query,
+          'ans1': ansArr[i][0],
+          'ans2': ansArr[i][1],
+          'ans3': ansArr[i][2],
+          'ans4': ansArr[i][3]
+        })
+      }
+      console.log(outgoingArr);
       if (req.session.user_id) {
         db.query('SELECT name FROM users WHERE id = $1', [req.session.user_id])
         .then(nameData => {
-          res.render('quizpage', { 'quizData': data.rows, 'name': nameData.rows[0].name });
+          res.render('quizpage', {
+            'quizData': quizObj,
+            'questionData': outgoingArr,
+            'name': nameData.rows[0].name
+          })
+          //res.render('quizpage', { 'quizData': data.rows, 'name': nameData.rows[0].name });
         })
       } else {
-        res.render('quizpage', { 'quizData': data.rows, 'name': null });
+        res.render('quizpage', {
+          'quizData': quizObj,
+          'questionData': outgoingArr,
+          'name': null
+        })
+        //res.render('quizpage', { 'quizData': data.rows, 'name': null });
       }
     })
     .catch(e=> console.log(e));

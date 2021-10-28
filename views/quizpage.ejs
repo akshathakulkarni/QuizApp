@@ -1,7 +1,6 @@
 <html>
 <head>
-  <% const quizObj = quizData[0]; %>
-  <title><%- quizObj.title -%></title>
+  <title><%- quizData.title -%></title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -13,33 +12,33 @@
 </head>
 <body>
   <%- include('partials/_header.ejs') %>
-  <% console.log(quizData);%>
+  <% console.log(quizData, questionData, name);%>
 
   <article class="quiz-proper">
-    <h2><%- quizObj.title -%></h2>
-    <h4>by <%- quizObj.author -%></h4>
+    <h2><%- quizData.title -%></h2>
+    <h4>by <%- quizData.author -%></h4>
     <form action="/api/attempts" method="POST">
-      <% for (let i = 0; i < quizData.length; i++) { %>
+      <% for (let i = 0; i < questionData.length; i++) { %>
       <div class="question">
-        <p class="query"><%- quizData[i].query -%></p>
-        <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a1" value=<%- quizData[i].correct_answer -%>>
+        <p class="query"><%- questionData[i].query -%></p>
+        <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a1" value="<%- questionData[i].ans1 -%>">
         <label class="form-check-label" for="q<%- i + 1 -%>a1">
-          <%- quizData[i].correct_answer -%>
+          <%- questionData[i].ans1 -%>
         </label>
         <br>
-        <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a2" value=<%- quizData[i].wrong_1 -%>>
+        <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a2" value="<%- questionData[i].ans2 -%>">
         <label class="form-check-label" for="q<%- i + 1 -%>a2">
-          <%- quizData[i].wrong_1 -%>
+          <%- questionData[i].ans2 -%>
         </label>
         <br>
-        <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a3" value=<%- quizData[i].wrong_2 -%>>
+        <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a3" value="<%- questionData[i].ans3 -%>">
         <label class="form-check-label" for="q<%- i + 1 -%>a3">
-          <%- quizData[i].wrong_2 -%>
+          <%- questionData[i].ans3 -%>
         </label>
         <br>
-        <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a4" value=<%- quizData[i].wrong_3 -%>>
+        <input class="form-check-input" type="radio" name="q<%- i + 1 -%>" id="q<%- i + 1 -%>a4" value="<%- questionData[i].ans4 -%>">
         <label class="form-check-label" for="q<%- i + 1 -%>a4">
-          <%- quizData[i].wrong_3 -%>
+          <%- questionData[i].ans4 -%>
         </label>
       </div>
       <% } %>
