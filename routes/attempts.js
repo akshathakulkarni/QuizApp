@@ -151,7 +151,6 @@ module.exports = (db) => {
         } else {
           res.render('tempattempt', {
             'quizData': quizObj,
-            'questionData': questionData.rows,
             'score': score,
             'name': null
           })
