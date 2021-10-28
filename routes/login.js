@@ -5,7 +5,7 @@ const router = express.Router();
 module.exports = (db) => {
   router.get('/', (req, res) => {
     console.log('inside get route')
-    res.render('login', { invalid: false });
+    res.render('login', { invalidPass: false, invalidUser: false });
   })
   router.post('/', (req, res) => {
     console.log('inside post route')
@@ -22,13 +22,14 @@ module.exports = (db) => {
         console.log('id = ', req.session.user_id);
         res.redirect('/');
       } else {
-        res.render('login', { invalid: true });
+        res.render('login', { invalidPass: true, invalidUser: false });
       }
     })
     .catch((err) => {
       res.status(500)
          .json({error: err.message});
       console.log(err);
+      res.render('login', { invalidPass: false, invalidUser: true })
     });
   })
   return router;
