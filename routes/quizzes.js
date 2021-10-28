@@ -64,12 +64,16 @@ module.exports = (db) => {
     WHERE quizzes.link = $1;`, [link])
     .then(data => {
       console.log(data.rows);
+      data.rows.sort((a, b) => a.id - b.id); // is this line necessary?
       const ansArr = [];
       for (const q of data.rows) {
         ansArr.push([q.correct_answer, q.wrong_1, q.wrong_2, q.wrong_3]);
       }
       ansArr.map(arr => arr.sort(() => Math.random() - 0.5));
       console.log(ansArr);
+      const quizObj = {
+
+      }
       if (req.session.user_id) {
         db.query('SELECT name FROM users WHERE id = $1', [req.session.user_id])
         .then(nameData => {
