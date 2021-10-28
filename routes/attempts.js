@@ -117,7 +117,18 @@ module.exports = (db) => {
       db.query('SELECT * FROM questions WHERE quiz_id = $1', [quizId])
       .then(questionData => {
         console.log('question data', questionData.rows);
-        console.log(checkScore(questionData.rows, req.body));
+        const score = checkScore(questionData.rows, req.body);
+        console.log('score', score);
+        if (userId) {
+
+        } else {
+          res.render('tempattempt', {
+            'quizData': quizObj,
+            'questionData': questionData.rows,
+            'score': score,
+            'name': null
+          })
+        }
       })
     })
     .catch(e => console.log(e))
