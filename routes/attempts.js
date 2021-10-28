@@ -85,6 +85,17 @@ module.exports = (db) => {
           .json({ err: err.message });
       })
   })
+  const checkScore = function(arr, body) {
+    let score = 0;
+    for (let i = 0; i < arr.length; i++) {
+      console.log(body[`q${i + 1}`]);
+      console.log(arr[i].correct_answer);
+      if (body[`q${i + 1}`] === arr[i].correct_answer) {
+        score ++;
+      }
+    }
+    return score;
+  };
   router.post('/', (req, res) => {
     console.log(req.body);
     console.log(req.params);
@@ -106,12 +117,7 @@ module.exports = (db) => {
       db.query('SELECT * FROM questions WHERE quiz_id = $1', [quizId])
       .then(questionData => {
         console.log('question data', questionData.rows);
-        const questionArr = questionData.rows;
-        for (let i = 0; i < questionArr.length; i++) {
-          for (const ans in req.body) {
-
-          }
-        }
+        console.log(checkScore(questionData.rows, req.body));
       })
     })
     .catch(e => console.log(e))
