@@ -22,7 +22,8 @@
       <input type="email" class="form-control" id="floatingInput" name="email" placeholder="Enter your email here">
       <label for="password">password</label>
       <input type="password" class="form-control" id="floatingInput" name="password">
-      <% if (invalid) { %><p class="invalid">Invalid username or password.</p><% } %>
+      <% if (invalidUser) { %><p class="invalid">Invalid username.</p><% } %>
+      <% if (invalidPass) { %><p class="invalid">Invalid password.</p><% } %>
       <br>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>

@@ -26,8 +26,7 @@ module.exports = (db) => {
       }
     })
     .catch((err) => {
-      res.status(500)
-         .json({error: err.message});
+      res.status(500);
       console.log(err);
       res.render('login', { invalidPass: false, invalidUser: true })
     });
