@@ -106,6 +106,12 @@ module.exports = (db) => {
       db.query('SELECT * FROM questions WHERE quiz_id = $1', [quizId])
       .then(questionData => {
         console.log('question data', questionData.rows);
+        const questionArr = questionData.rows;
+        for (let i = 0; i < questionArr.length; i++) {
+          for (const ans in req.body) {
+
+          }
+        }
       })
     })
     .catch(e => console.log(e))
