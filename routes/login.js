@@ -11,8 +11,8 @@ module.exports = (db) => {
     console.log('inside post route')
     const email = req.body.email;
     const password = req.body.password;
-    const hash = bcrypt.hashSync(password, 10);
-    console.log(hash);
+    //const hash = bcrypt.hashSync(password, 10);
+    //console.log(hash);
     /*
     db.query(`SELECT name, id FROM users WHERE email = $1 AND password = $2`, [email, hash])
       .then((data) => {
@@ -35,7 +35,7 @@ module.exports = (db) => {
     .then((data) => {
       const name = data.rows[0].name;
       const dbPass = data.rows[0].password;
-      if (bcrypt.compareSync(password, hash)) {
+      if (bcrypt.compareSync(password, dbPass)) {
         req.session.user_id = data.rows[0].id;
         req.session.name = data.rows[0].name;
         console.log('name = ', req.session.name)
