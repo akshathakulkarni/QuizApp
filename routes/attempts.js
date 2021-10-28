@@ -96,6 +96,9 @@ module.exports = (db) => {
     }
     return score;
   };
+  const generateRandomString = function() {
+    return Math.random().toString(36).substr(2, 6);
+  };
   router.post('/', (req, res) => {
     console.log(req.body);
     console.log(req.params);
@@ -120,7 +123,13 @@ module.exports = (db) => {
         const score = checkScore(questionData.rows, req.body);
         console.log('score', score);
         if (userId) {
-
+          db.query(`INSERT INTO attempts (user_id, quiz_id, score, link)
+          VALUES ($1, $2, $3, $4) RETURNING *`,
+          [userId, quizId, score, generateRandomString()])
+          .then(attemptData => {
+            console.log('attempt data', attemptData.rows);
+            const attemptObj = attemptData.rows[0];
+          })
         } else {
           res.render('tempattempt', {
             'quizData': quizObj,
