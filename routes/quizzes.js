@@ -71,9 +71,15 @@ module.exports = (db) => {
       }
       ansArr.map(arr => arr.sort(() => Math.random() - 0.5));
       console.log(ansArr);
+      const refQuestion = data.rows[0];
       const quizObj = {
-
+        'id': refQuestion.quiz_id,
+        'title': refQuestion.title,
+        'unlisted': refQuestion.unlisted,
+        'link': link,
+        'author': refQuestion.author
       }
+      const outgoingArr = [];
       if (req.session.user_id) {
         db.query('SELECT name FROM users WHERE id = $1', [req.session.user_id])
         .then(nameData => {
