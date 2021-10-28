@@ -85,6 +85,7 @@ module.exports = (db) => {
           .json({ err: err.message });
       })
      /*
+     // if we want to condense this get route, if we have time
     db.query(`SELECT attempts.id as attemptid, attempts.user_id, attempts.quiz_id,
     attempts.score, attempts.link as attemptlink, x.name as attemptName, quizzes.title,
     y.name as authorName, quizzes.link as quizlink,
@@ -96,6 +97,7 @@ module.exports = (db) => {
     WHERE attempts.link = $1;`, [req.params.link])
     .then(attemptData => {
       console.log(attemptData.rows);
+      // do all the rest of the stuff
     })
     */
   })
