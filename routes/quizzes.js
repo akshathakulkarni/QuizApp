@@ -76,6 +76,10 @@ module.exports = (db) => {
     .catch(e=> console.log(e));
   })
 
+  router.get('/new/quizform', (req, res) => {
+      res.render('CreateQuizForm');
+  });
+
   router.post('/', (req, res) => {
     console.log("inside newQuizPost")
     console.log('req = ', req.body)
