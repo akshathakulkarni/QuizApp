@@ -49,6 +49,11 @@ main {
   margin-right: 15%;
 }
 
+.invalid {
+  color: red;
+  font-weight: bold;
+}
+
 .quiz-preview, .attempt-preview {
   border: 1px solid black;
   padding: 20px;

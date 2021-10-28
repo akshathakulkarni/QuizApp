@@ -8,6 +8,7 @@ const express = require("express");
 const cookieSession = require('cookie-session');
 const app = express();
 const morgan = require("morgan");
+const bcrypt = require("bcrypt");
 
 // PG database client/connection setup
 const { Pool } = require("pg");
