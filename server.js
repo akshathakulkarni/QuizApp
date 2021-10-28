@@ -52,7 +52,7 @@ const login = require("./routes/login");
 const logout = require("./routes/logout");
 const quizList = require("./routes/quizList");
 const quizzes = require("./routes/quizzes");
-
+const shareLinks = require("./routes/shareLinks");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -64,6 +64,7 @@ app.use("/api/attempts", attempts(db));
 app.use("/api/login", login(db));
 app.use("/logout", logout(db));
 app.use("/api/quizzes", quizzes(db));
+app.use("/api/share", shareLinks(db));
 app.use("/", quizList(db));
 // Note: mount other resources here, using the same pattern above
 
