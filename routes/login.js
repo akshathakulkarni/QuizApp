@@ -4,7 +4,7 @@ const router = express.Router();
 module.exports = (db) => {
   router.get('/', (req, res) => {
     console.log('inside get route')
-    res.render('login');
+    res.render('login', { invalid: false });
   })
   router.post('/', (req, res) => {
     console.log('inside post route')
