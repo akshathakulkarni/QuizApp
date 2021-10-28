@@ -141,11 +141,9 @@ module.exports = (db) => {
         if (userId) {
           const newLink = generateRandomString();
           db.query(`INSERT INTO attempts (user_id, quiz_id, score, link)
-          VALUES ($1, $2, $3, $4) RETURNING *`,
+          VALUES ($1, $2, $3, $4)`,
           [userId, quizId, score, newLink])
-          .then(attemptData => {
-            console.log('attempt data', attemptData.rows);
-            const attemptObj = attemptData.rows[0];
+          .then(() => {
             res.redirect(`/api/attempts/${newLink}`);
           })
         } else {
