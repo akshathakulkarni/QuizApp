@@ -94,10 +94,20 @@ module.exports = (db) => {
       if (req.session.user_id) {
         db.query('SELECT name FROM users WHERE id = $1', [req.session.user_id])
         .then(nameData => {
-          res.render('quizpage', { 'quizData': data.rows, 'name': nameData.rows[0].name });
+          res.render('quizpage', {
+            'quizData': quizObj,
+            'questionData': outgoingArr,
+            'name': nameData.rows[0].name
+          })
+          //res.render('quizpage', { 'quizData': data.rows, 'name': nameData.rows[0].name });
         })
       } else {
-        res.render('quizpage', { 'quizData': data.rows, 'name': null });
+        res.render('quizpage', {
+          'quizData': quizObj,
+          'questionData': outgoingArr,
+          'name': null
+        })
+        //res.render('quizpage', { 'quizData': data.rows, 'name': null });
       }
     })
     .catch(e=> console.log(e));
