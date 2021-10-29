@@ -97,12 +97,12 @@ module.exports = (db) => {
     JOIN users x ON x.id = user_id
     JOIN quizzes ON quiz_id = quizzes.id
     JOIN users y ON y.id = quizzes.author_id
-    WHERE attempts.link = $1;`, [link])
+    WHERE attempts.link = $1;`, [req.params.link])
     .then(attemptData => {
       console.log(attemptData.rows);
       const attemptObj = attemptData.rows;
       if (req.session.user_id) {
-        db.query('SELECT name FROM users WHERE id = $1', req.session.user_id)
+        db.query('SELECT name FROM users WHERE id = $1', [req.session.user_id])
         .then(nameData => {
           const userName = nameData.rows[0].name;
           res.render('attemptpage', { 'attemptData': attemptObj, 'name': userName });
