@@ -252,3 +252,17 @@ All of the above is now done! Here's what i know is left to do:
 - Implement share functionality
 
 - Stéphane
+
+
+Oct. 29
+
+Route files that can be deleted:
+- questions.js
+- quiz-question.js
+- users.js
+- widgets.js
+
+Routes in server.js that can be deleted:
+- questionsRoutes
+- quizQuestionIdRoutes
+- I think that's it

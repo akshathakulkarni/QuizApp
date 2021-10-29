@@ -25,6 +25,7 @@ module.exports = (db) => {
     }
     db.query(`SELECT email FROM users WHERE email = $1`, [req.body.email])
       .then((data) => {
+
         if (data.rows[0]) {
           return res.send('Error : Entered email already exists!');
         } else {
@@ -33,6 +34,7 @@ module.exports = (db) => {
               res.render('postRegister');
           })
         }
+
       })
       .catch(err => {
         res
