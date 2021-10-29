@@ -46,10 +46,13 @@ module.exports = (db) => {
     let wrong3 = '';
     const title = req.body.title;
     const author_id = req.session.user_id;
+    console.log('Req body unlisted', req.body.unlisted)
     let unlisted = false;
+    console.log('unlisted before if', unlisted)
     if (req.body.unlisted === true) {
       unlisted = true;
     }
+    console.log('unlisted after if', unlisted)
     console.log('author_id = ', author_id)
     console.log(title, author_id, unlisted)
     const link = generateRandomString(6, '8qy3zi');
