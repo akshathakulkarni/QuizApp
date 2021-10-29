@@ -30,12 +30,9 @@ module.exports = (db) => {
       })
   })
   router.get('/:link', (req, res) => {
-    //console.log('Req session:', req.session);
-    //console.log('Req params:', req.params)
     const link = req.params.link;
     console.log('Cookie ID:', req.session.user_id);
     console.log('We got here, req params', req.params);
-     // if we want to condense this get route, if we have time
     db.query(`SELECT attempts.id as attemptid, attempts.user_id, attempts.quiz_id,
     attempts.score, attempts.link as attemptlink, x.name as attemptName, quizzes.title,
     y.name as authorName, quizzes.link as quizlink,
