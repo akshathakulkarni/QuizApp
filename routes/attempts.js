@@ -100,6 +100,7 @@ module.exports = (db) => {
       console.log(attemptData.rows);
       // do all the rest of the stuff
     })
+    .catch(e => console.log(e));
     */
   })
   const checkScore = function(arr, body) {
