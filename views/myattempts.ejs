@@ -15,12 +15,10 @@
 
 <body>
   <%- include('partials/_header.ejs') %>
-  <% console.log(attemptData) %>
   <h2 id="page-title">My attempts</h2>
   <br>
   <main>
     <% for (const attempt of attemptData) { %>
-      <% console.log('Attempt:', attempt) %>
     <article class="attempt-preview">
       <h2><%- attempt.title -%></h2>
       <p>by <%- attempt.authorname -%></p>

@@ -42,7 +42,6 @@ return $addQuestion;
 const errorCheck = function(event) {
   $error = $('#error');
   $inputText = $('.form-control');
-  console.log('inputText = ', $inputText.length);
   let errorFlag = false;
 
   //For a valid input no error should be displayed.
@@ -50,7 +49,6 @@ const errorCheck = function(event) {
 
   //check if input content is empty
   for (let $input in $inputText) {
-   console.log('input text = ', $inputText[$input].value);
     if($inputText[$input].value === '' || $inputText[$input].value === null)
     {
       $error.css("background-color", "#FFDB58");
@@ -59,7 +57,6 @@ const errorCheck = function(event) {
       errorFlag = true;
     }
   }
-  console.log('errorFlag = ', errorFlag);
   return errorFlag;
 }
 

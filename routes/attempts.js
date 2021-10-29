@@ -3,11 +3,7 @@ const router = express.Router();
 
 module.exports = (db) => {
   router.get('/', (req, res) => {
-    //console.log('Req session:', req.session);
-    //console.log('Req params:', req.params)
     const userId = req.session.user_id;
-    console.log('myAttempts route has been reached');
-    console.log('author id = ', userId);
     db.query(`SELECT attempts.id as attemptid, attempts.user_id, attempts.quiz_id, attempts.score, attempts.link as attemptlink, x.name as attemptName, quizzes.title, y.name as authorName, quizzes.link as quizlink,
     (SELECT count(*) FROM quizzes_questions WHERE quiz_id = quizzes.id)
     FROM attempts
@@ -31,8 +27,6 @@ module.exports = (db) => {
   })
   router.get('/:link', (req, res) => {
     const link = req.params.link;
-    console.log('Cookie ID:', req.session.user_id);
-    console.log('We got here, req params', req.params);
     db.query(`SELECT attempts.id as attemptid, attempts.user_id, attempts.quiz_id,
     attempts.score, attempts.link as attemptlink, x.name as attemptName, quizzes.title,
     y.name as authorName, quizzes.link as quizlink,
@@ -43,7 +37,6 @@ module.exports = (db) => {
     JOIN users y ON y.id = quizzes.author_id
     WHERE attempts.link = $1;`, [req.params.link])
     .then(attemptData => {
-      console.log(attemptData.rows);
       const attemptObj = attemptData.rows;
       if (req.session.user_id) {
         db.query('SELECT name FROM users WHERE id = $1', [req.session.user_id])
@@ -60,8 +53,6 @@ module.exports = (db) => {
   const checkScore = function(arr, body) {
     let score = 0;
     for (let i = 0; i < arr.length; i++) {
-      console.log(body[`q${i + 1}`]);
-      console.log(arr[i].correct_answer);
       if (body[`q${i + 1}`] === arr[i].correct_answer) {
         score ++;
       }
@@ -72,11 +63,8 @@ module.exports = (db) => {
     return Math.random().toString(36).substr(2, 6);
   };
   router.post('/', (req, res) => {
-    console.log(req.body);
-    console.log(req.params);
     const userId = req.session.user_id;
     const quizLink = req.headers.referer.split('/')[5];
-    console.log(userId, quizLink);
     db.query(`SELECT quizzes.*, users.name,
     (SELECT count(*) FROM attempts WHERE quiz_id = quizzes.id) as attempts,
     ROUND((SELECT avg(score) FROM attempts WHERE quiz_id = quizzes.id), 1) as avg,
@@ -85,15 +73,11 @@ module.exports = (db) => {
     JOIN users ON users.id = quizzes.author_id
     WHERE quizzes.link = $1;`, [quizLink])
     .then(quizData => {
-      console.log(quizData.rows);
       const quizObj = quizData.rows[0];
       const quizId = quizObj.id;
-      console.log('quiz id', quizId);
       db.query('SELECT * FROM questions WHERE quiz_id = $1', [quizId])
       .then(questionData => {
-        console.log('question data', questionData.rows);
         const score = checkScore(questionData.rows, req.body);
-        console.log('score', score);
         if (userId) {
           const newLink = generateRandomString();
           db.query(`INSERT INTO attempts (user_id, quiz_id, score, link)
