@@ -42,7 +42,6 @@ return $addQuestion;
 const errorCheck = function(event) {
   $error = $('#error');
   $inputText = $('.form-control');
-  console.log('inputText = ', $inputText.length);
   let errorFlag = false;
 
   //For a valid input no error should be displayed.
