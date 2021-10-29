@@ -27,23 +27,15 @@ header {
   padding: 20px;
 }
 
-header a {
+.blacklink {
   color: black;
   text-decoration: none;
 }
 
-header a:hover, header a:visited, header a:active {
-  color: black;
-}
-/*
-header a:visited {
+.blacklink:hover, .blacklink:visited, .blacklink:active {
   color: black;
 }
 
-header a:active {
-  color: black;
-}
-*/
 main {
   margin-left: 15%;
   margin-right: 15%;
