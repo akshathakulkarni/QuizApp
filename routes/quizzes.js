@@ -25,10 +25,7 @@ const dataArray = (obj) => {
 
 module.exports = (db) => {
   router.get('/', (req, res) => {
-    //console.log('Req session:', req.session);
-    //console.log('Req params:', req.params)
     author_id = req.session.user_id;
-    console.log('author id = ', author_id);
     db.query(`
     SELECT quizzes.*, users.name,
     (SELECT count(*) FROM attempts WHERE quiz_id = quizzes.id) as attempts,
@@ -40,7 +37,6 @@ module.exports = (db) => {
     `, [author_id])
       .then(data => {
         const myQuizzes = data.rows;
-        console.log('myQuizzes:', myQuizzes);
         const userName = myQuizzes[0].name;
         res.render("myquizzes", {'myQuizzes': myQuizzes, 'name': userName});
       })
@@ -52,25 +48,19 @@ module.exports = (db) => {
   })
 
   router.get('/:link', (req, res) => {
-    //console.log('Req session:', req.session);
-    //console.log('Req params:', req.params)
     const link = req.params.link;
-    console.log('Cookie ID:', req.session.user_id);
-    console.log('We got here, req params', req.params);
     db.query(`SELECT quizzes.*, questions.*, (SELECT name FROM users WHERE id = quizzes.author_id) as author
     FROM quizzes_questions
     JOIN quizzes ON quiz_id = quizzes.id
     JOIN questions ON question_id = questions.id
     WHERE quizzes.link = $1;`, [link])
     .then(data => {
-      console.log(data.rows);
       data.rows.sort((a, b) => a.id - b.id); // is this line necessary?
       const ansArr = [];
       for (const q of data.rows) {
         ansArr.push([q.correct_answer, q.wrong_1, q.wrong_2, q.wrong_3]);
       }
       ansArr.map(arr => arr.sort(() => Math.random() - 0.5));
-      console.log(ansArr);
       const refQuestion = data.rows[0];
       const quizObj = {
         'id': refQuestion.quiz_id,
@@ -90,7 +80,6 @@ module.exports = (db) => {
           'ans4': ansArr[i][3]
         })
       }
-      console.log(outgoingArr);
       if (req.session.user_id) {
         db.query('SELECT name FROM users WHERE id = $1', [req.session.user_id])
         .then(nameData => {
@@ -127,10 +116,7 @@ module.exports = (db) => {
   });
 
   router.post('/', (req, res) => {
-    console.log("inside quiz post")
-    console.log('req = ', req.body)
     const username = req.session.name;
-    console.log('username = ', username)
     let obj = req.body;
     let dataResult = [];
     let dataObj = {};
@@ -145,15 +131,11 @@ module.exports = (db) => {
     if (req.body.unlisted === true) {
       unlisted = true;
     }
-    console.log('author_id = ', author_id)
-    console.log(title, author_id, unlisted)
     const link = generateRandomString(6, '8qy3zi');
-    console.log('link = ', link)
     const templateVars = {
       name : username,
       link : link
     };
-    console.log('t = ', templateVars)
     if (typeof(obj['query']) === 'string') {
         dataObj = {
         query: obj['query'],
@@ -165,38 +147,28 @@ module.exports = (db) => {
       dataResult = [ dataObj ];
     } else {
       dataResult = dataArray(obj)
-      console.log(`dataResult: ${JSON.stringify(dataResult)}`)
-      console.log('length = ', dataResult.length);
     }
     const query1 =`INSERT INTO quizzes (title, author_id, unlisted, link) VALUES ($1, $2, $3, $4) RETURNING *;`;
     const values1 = [title, author_id, unlisted, link];
     db.query(query1, values1)
       .then(data => {
         const newQuiz = data.rows;
-        console.log('quizzes = ', data.rows)
         const quiz_id = data.rows[0].id;
-        console.log('id = ', quiz_id);
-        console.log('result = ', newQuiz);
         for (let eachObj of dataResult) {
           for (let eachItem in eachObj) {
             if (eachItem === 'query') {
-              console.log('question = ', eachObj[eachItem]);
               question = eachObj[eachItem];
             }
             if (eachItem === 'correct') {
-              console.log('correct = ', eachObj[eachItem]);
               correct = eachObj[eachItem];
             }
             if (eachItem === 'wrong1') {
-              console.log('wrong1 = ', eachObj[eachItem]);
               wrong1 = eachObj[eachItem];
             }
             if (eachItem === 'wrong2') {
-              console.log('wrong2 = ', eachObj[eachItem]);
               wrong2 = eachObj[eachItem];
             }
             if (eachItem === 'wrong3') {
-              console.log('wrong3 = ', eachObj[eachItem]);
               wrong3 = eachObj[eachItem];
             }
           }
@@ -206,13 +178,11 @@ module.exports = (db) => {
             .then(data => {
               const quizQuestionAnswers = data.rows;
               const question_id = data.rows[0].id;
-              console.log('2 = ', quizQuestionAnswers);
               const query3 = `INSERT INTO quizzes_questions (quiz_id, question_id) VALUES ($1, $2) RETURNING *;`;
               const values3 = [quiz_id, question_id];
               db.query(query3, values3)
                 .then(data => {
                   const quiz_question_ids = data.rows;
-                  console.log('ids 3 = ', quiz_question_ids)
                 })
 
             })
