@@ -14,12 +14,10 @@ module.exports = (db) => {
     res.render('register');
   });
   router.post("/", (req, res) => {
-    //console.log(req.body);
     const name = req.body.name;
     const email = req.body.email;
     //const password = req.body.password;
     const hashedPassword = bcrypt.hashSync(req.body.password, 10)
-    console.log('hashedPassword = ', hashedPassword)
     const values = [name, email, hashedPassword];
     if (req.body.name === '' || req.body.email === '' || req.body.password === '') {
       res.statusCode = 400;
@@ -27,7 +25,6 @@ module.exports = (db) => {
     }
     db.query(`INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *;`, values)
       .then((data) => {
-        console.log(data.rows);
         res.redirect('/');
       })
       .catch(err => {
