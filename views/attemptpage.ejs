@@ -18,7 +18,7 @@
     <h2><%- obj.attemptname -%>'s attempt at "<%- obj.title -%>"</h2>
     <p><%- obj.attemptname -%> attempted <%- obj.authorname -%>'s quiz "<%- obj.title -%>" and got <%- obj.score -%> out of <%- obj.count -%> questions right!</p>
     <p>Can you do better?</p>
-    <a class="btn btn-primary" href="/api/quizzes/<%- obj.quizLink -%>" role="button">Take the quiz!</a>
+    <a class="btn btn-primary" href="/api/quizzes/<%- obj.quizlink -%>" role="button">Take the quiz!</a>
     <a class="btn btn-success" href="/api/share/attempt/<%-  obj.attemptlink -%>" role="button">Share this attempt</a>
 
   </article>
