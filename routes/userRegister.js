@@ -16,16 +16,25 @@ module.exports = (db) => {
   router.post("/", (req, res) => {
     const name = req.body.name;
     const email = req.body.email;
-    //const password = req.body.password;
     const hashedPassword = bcrypt.hashSync(req.body.password, 10)
+
     const values = [name, email, hashedPassword];
     if (req.body.name === '' || req.body.email === '' || req.body.password === '') {
       res.statusCode = 400;
       return res.send('Error : Invalid username or email or password.');
     }
-    db.query(`INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *;`, values)
+    db.query(`SELECT email FROM users WHERE email = $1`, [req.body.email])
       .then((data) => {
-        res.redirect('/');
+
+        if (data.rows[0]) {
+          return res.send('Error : Entered email already exists!');
+        } else {
+          db.query(`INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *;`, values)
+            .then((data) => {
+              res.render('postRegister');
+          })
+        }
+
       })
       .catch(err => {
         res
