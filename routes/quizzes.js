@@ -127,13 +127,10 @@ module.exports = (db) => {
     let wrong3 = '';
     const title = req.body.title;
     const author_id = req.session.user_id;
-    console.log('Req body unlisted', req.body.unlisted);
     let unlisted = false;
-    console.log('unlisted var before it', unlisted);
     if (req.body.unlisted) {
       unlisted = true;
     }
-    console.log('unlisted var after if', unlisted);
     const link = generateRandomString(6, '8qy3zi');
     const templateVars = {
       name : username,
