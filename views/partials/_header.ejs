@@ -13,8 +13,8 @@
           <a class="nav-item nav-link" href="/api/attempts">My Attempts</a>
         </div>
       </div>
-      <h5>Logged in as :&nbsp</h5>  <!-- &nbsp(non-breaking space) for adding space after header -->
-      <h5><%= name %>&nbsp&nbsp</h5>
+      <h5 class ="nomargin">Logged in as :&nbsp</h5>  <!-- &nbsp(non-breaking space) for adding space after header -->
+      <h5 class ="nomargin"><%= name %>&nbsp&nbsp</h5>
       <form method="POST", action="/logout">
         <button class="btn btn-primary" type="submit">Logout</button>
       </form>
