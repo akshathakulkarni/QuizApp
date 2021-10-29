@@ -35,6 +35,7 @@ module.exports = (db) => {
     const link = req.params.link;
     console.log('Cookie ID:', req.session.user_id);
     console.log('We got here, req params', req.params);
+    /*
     db.query(`SELECT * FROM attempts WHERE link = $1`, [link])
       .then(data => {
         console.log('Got here in attempts', data.rows);
@@ -85,7 +86,8 @@ module.exports = (db) => {
           .status(500)
           .json({ err: err.message });
       })
-     /*
+      */
+
      // if we want to condense this get route, if we have time
     db.query(`SELECT attempts.id as attemptid, attempts.user_id, attempts.quiz_id,
     attempts.score, attempts.link as attemptlink, x.name as attemptName, quizzes.title,
@@ -101,7 +103,6 @@ module.exports = (db) => {
       // do all the rest of the stuff
     })
     .catch(e => console.log(e));
-    */
   })
   const checkScore = function(arr, body) {
     let score = 0;
