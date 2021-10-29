@@ -130,7 +130,7 @@ module.exports = (db) => {
     console.log('Req body unlisted', req.body.unlisted);
     let unlisted = false;
     console.log('unlisted var before it', unlisted);
-    if (req.body.unlisted === true) {
+    if (req.body.unlisted) {
       unlisted = true;
     }
     console.log('unlisted var after if', unlisted);
