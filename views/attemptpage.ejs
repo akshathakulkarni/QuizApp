@@ -14,7 +14,6 @@
 </head>
 <body>
   <%- include('partials/_header.ejs') %>
-  <% console.log('We got to attempt page', attemptData) %>
   <article class="attempt">
     <h2><%- obj.attemptname -%>'s attempt at "<%- obj.title -%>"</h2>
     <p><%- obj.attemptname -%> attempted <%- obj.authorname -%>'s quiz "<%- obj.title -%>" and got <%- obj.score -%> out of <%- obj.count -%> questions right!</p>
