@@ -28,7 +28,7 @@ const dataArray = (obj) => {
 
 module.exports = (db) => {
   router.get('/', (req, res) => {
-    console.log('inside get new')
+    console.log('inside newQuiz get')
     res.render('dummynew');
   })
   router.post('/', (req, res) => {

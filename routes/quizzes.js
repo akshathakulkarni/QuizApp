@@ -127,7 +127,7 @@ module.exports = (db) => {
   });
 
   router.post('/', (req, res) => {
-    console.log("inside newQuizPost")
+    console.log("inside quiz post")
     console.log('req = ', req.body)
     const username = req.session.name;
     console.log('username = ', username)
