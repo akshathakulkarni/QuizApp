@@ -79,14 +79,6 @@ app.get("/", (req, res) => {
   res.render("index", { name });
 });
 
-app.get('/dummyquiz', (req, res) => {
-  res.render('dummyquiz');
-});
-
-app.get('/dummyattempt', (req, res) => {
-  res.render('dummyattempt');
-});
-
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
