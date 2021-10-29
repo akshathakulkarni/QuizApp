@@ -6,13 +6,14 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-  <link rel="stylesheet" href="/styles/login.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+
+  <title>Share your link</title>
 
 </head>
 <body>
-
-  <section class='login-form'>
-    <h2>QuizApp</h2>
+  <%- include('partials/_header.ejs') %>
+  <section class='sharing-text'>
     <br>
     <% console.log('Link in ejs : ', share_link) %>
     <p>Get your link here. When clicked, the link will be copied to your clipboard. </p>

@@ -33,8 +33,6 @@ const addQuestion = (count) => {
   </div>
   <input type="text" name="wrong3" class="form-control" aria-describedby="wrong3-prompt">
 </div>
-<br>
-<br>
 
 </section>
 `

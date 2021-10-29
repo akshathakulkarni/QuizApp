@@ -114,7 +114,16 @@ module.exports = (db) => {
   })
 
   router.get('/new/quizform', (req, res) => {
-      res.render('CreateQuizForm');
+    if (req.session.user_id) {
+      db.query('SELECT name FROM users WHERE id = $1', [req.session.user_id])
+      .then(nameData => {
+        const userName = nameData.rows[0].name;
+        res.render('CreateQuizForm', { 'name': userName });
+      })
+      .catch(e => console.log(e));
+    } else {
+      res.render('CreateQuizForm', { 'name': null });
+    }
   });
 
   router.post('/', (req, res) => {
