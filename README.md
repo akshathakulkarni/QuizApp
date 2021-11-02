@@ -7,27 +7,24 @@ This is a simple, node-based full-stack web app designed for creating and taking
 
 - View a list of public quizzes on the homepage of the app
 - Login or register to the database with their email and password
-- Take any quiz, whether logged in or out
+- Take any quiz, whether logged in or out, and immediately see their score
 - Share a quiz with a unique link
 - Share an attempt at a quiz by a registered user, with a unique link
 - If logged in, save their attempts
 - If logged in, create a quiz with any number of questions they want
 
 
-## Getting Started
+## Behind the Scenes
 
-1. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`
-2. Update the .env file with your correct local information 
-  - username: `labber` 
-  - password: `labber` 
-  - database: `midterm`
-3. Install dependencies: `npm i`
-4. Fix to binaries for sass: `npm rebuild node-sass`
-5. Reset database: `npm run db:reset`
-  - Check the db folder to see what gets created and seeded in the SDB
-7. Run the server: `npm run local`
-  - Note: nodemon is used, so you should not have to restart your server
-8. Visit `http://localhost:8080/`
+This app was created as a midterm project by myself (Stéphane Krims) and Akshatha Kulkarni, as part of the requirements for our completion of Lighthouse Labs' Web Development Flex Course.
+
+The app's creation took place from October 19-29, 2021, and we presented the app to our classmates and instructors on October 30.
+
+As of this writing (Nov 2), the app is fully functional in its basic capabilities. However, there are some stretch (optional) functionalities we would have liked to include as well, such as:
+
+- Allowing users to see which questions they got right and wrong
+- Allowing users to delete and edit quizzes
+- Allowing users to change their minds about how many questions their quiz has, rather than (as it is now) being forced to make however many questions are in the "create new quiz" form, depending on how many times they clicked the "add new question" button
 
 ## Warnings & Tips
 
