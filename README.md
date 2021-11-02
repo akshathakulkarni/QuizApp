@@ -53,3 +53,16 @@ You can also use the `npm run db:reset` command. (note: this command will drop a
 - SASS 1.35.1 or above
 
 ## Screenshots
+
+!["Homepage as it appears when a user is logged out"](https://github.com/stephkri/quizapp/blob/master/screenshots/logout-homepage.png)
+!["Homepage as it appears when a user is logged in"](https://github.com/stephkri/quizapp/blob/master/screenshots/login-homepage.png)
+!["Register page"](https://github.com/stephkri/quizapp/blob/master/screenshots/register-page.png)
+!["Login page"](https://github.com/stephkri/quizapp/blob/master/screenshots/login-page.png)
+!["Page for an individual quiz"](https://github.com/stephkri/quizapp/blob/master/screenshots/quiz-page.png)
+!["Answers for each question are randomly arranged with each page refresh"](https://github.com/stephkri/quizapp/blob/master/screenshots/quiz-page-scramble.png)
+!["For logged-in users: attempt is immediately recorded and shareable"](https://github.com/stephkri/quizapp/blob/master/screenshots/attempt-page.png)
+!["For logged-out users: attempt is only temporarily visible"](https://github.com/stephkri/quizapp/blob/master/screenshots/temp-attempt.png)
+!["Form for logged-in users to create a new quiz"](https://github.com/stephkri/quizapp/blob/master/screenshots/new-quiz.png)
+!["Page for logged-in users to see the quizzes they've made"](https://github.com/stephkri/quizapp/blob/master/screenshots/my-quizzes.png)
+!["Page for logged-in users to see the quiz attempts they've made"](https://github.com/stephkri/quizapp/blob/master/screenshots/my-attempts.png)
+!["Page for anyone to share links to a quiz or attempt"](https://github.com/stephkri/quizapp/blob/master/screenshots/share-page.png)
