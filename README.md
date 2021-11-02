@@ -51,3 +51,5 @@ You can also use the `npm run db:reset` command. (note: this command will drop a
 - Morgan 1.9.1 or above
 - PG-Native 3.x or above
 - SASS 1.35.1 or above
+
+## Screenshots
