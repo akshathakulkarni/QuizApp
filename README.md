@@ -42,3 +42,12 @@ You can also use the `npm run db:reset` command. (note: this command will drop a
 - Node 10.x or above
 - NPM 5.x or above
 - PG 6.x
+- Bcrypt 5.0.1 or above
+- Chalk 2.4.2 or above
+- CookieSession 1.4.x or above
+- Dotenv 2.x or above
+- EJS 2.6.2 or above
+- Express 4.17.1 or above
+- Morgan 1.9.1 or above
+- PG-Native 3.x or above
+- SASS 1.35.1 or above
