@@ -1,15 +1,17 @@
-LHL Node Skeleton
+QuizApp
 =========
 
-## Project Setup
+## Description
 
-The following steps are only for _one_ of the group members to perform.
+This is a simple, node-based full-stack web app designed for creating and taking simple, multiple-choice quizzes. In this app, users can:
 
-1. Create your own copy of this repo using the `Use This Template` button, ideally using the name of your project. The repo should be marked Public
-2. Verify that the skeleton code now shows up in your repo on GitHub, you should be automatically redirected
-3. Clone your copy of the repo to your dev machine
-4. Add your team members as collaborators to the project so that they can push to this repo
-5. Let your team members know the repo URL so that they use the same repo (they should _not_ create a copy/fork of this repo since that will add additional workflow complexity to the project)
+- View a list of public quizzes on the homepage of the app
+- Login or register to the database with their email and password
+- Take any quiz, whether logged in or out
+- Share a quiz with a unique link
+- Share an attempt at a quiz by a registered user, with a unique link
+- If logged in, save their attempts
+- If logged in, create a quiz with any number of questions they want
 
 
 ## Getting Started
