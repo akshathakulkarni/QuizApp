@@ -1,8 +1,5 @@
 QuizApp
 =========
-
-## Description
-
 This is a simple, node-based full-stack web app designed for creating and taking simple, multiple-choice quizzes. In this app, users can:
 
 - View a list of public quizzes on the homepage of the app
@@ -13,18 +10,7 @@ This is a simple, node-based full-stack web app designed for creating and taking
 - If logged in, save their attempts
 - If logged in, create a quiz with any number of questions they want
 
-
-## Behind the Scenes
-
-This app was created as a midterm project by myself (Stéphane Krims) and Akshatha Kulkarni, as part of the requirements for our completion of Lighthouse Labs' Web Development Flex Course.
-
-The app's creation took place from October 19-29, 2021, and we presented the app to our classmates and instructors on October 30.
-
-As of this writing (Nov 2), the app is fully functional in its basic capabilities. However, there are some stretch (optional) functionalities we would have liked to include as well, such as:
-
-- Allowing users to see which questions they got right and wrong
-- Allowing users to delete and edit quizzes
-- Allowing users to change their minds about how many questions their quiz has, rather than (as it is now) being forced to make however many questions are in the "create new quiz" form, depending on how many times they clicked the "add new question" button
+This is a group project as part of [Lighthouse Labs](https://www.lighthouselabs.ca) by [Stephane Krims](https://github.com/stephkri) and [Akshatha Kulkarni](https://github.com/akshathakulkarni). 
 
 ## Installation instructions
 
