@@ -42,7 +42,6 @@ app.use(
 app.use(express.static("public"));
 
 // Separated Routes for each Resource
-// Note: Feel free to replace the example routes below with your own
 const userRegister = require("./routes/userRegister");
 const attempts = require("./routes/attempts");
 const login = require("./routes/login");
@@ -52,8 +51,7 @@ const quizzes = require("./routes/quizzes");
 const shareLinkQuiz = require("./routes/shareLinkQuiz");
 const shareLinkAttempt = require("./routes/shareLinkAttempt");
 
-// Mount all resource routes
-// Note: Feel free to replace the example routes below with your own
+// Mount resource routes
 app.use("/api/users/register", userRegister(db));
 app.use("/api/attempts", attempts(db));
 app.use("/api/login", login(db));
@@ -62,11 +60,6 @@ app.use("/api/quizzes", quizzes(db));
 app.use("/api/share/quiz", shareLinkQuiz(db));
 app.use("/api/share/attempt", shareLinkAttempt(db));
 app.use("/", quizList(db));
-// Note: mount other resources here, using the same pattern above
-
-// Home page
-// Warning: avoid creating more routes in this file!
-// Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
   const name = '';
