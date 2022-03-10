@@ -14,13 +14,12 @@ This is a group project as part of [Lighthouse Labs](https://www.lighthouselabs.
 
 ## Installation instructions
 
-If you'd like to try this app yourself:
-
 1. Fork and clone this repository into your machine
 2. Run the command `npm run local`. This will get the server running on port 8080.
 3. Type `localhost:8080` in the address bar of your browser. You should see the home page of the app.
 
-If you'd like to see some preset quizzes we've made, you can implement the seeds in this repo with psql. The username and password are both `labber`.
+To see some preset quizzes we've made, implement the seeds in this repo with psql. 
+The username and password are both `labber`.
 You can also use the `npm run db:reset` command. (note: this command will drop any users, quizzes or attempts that you have made yourself - use with caution!)
 
 ## Dependencies
